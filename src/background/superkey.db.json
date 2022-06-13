@@ -1,0 +1,31 @@
+{
+  "keyLists": [
+    {
+      "key": "stk",
+      "url": "https://stackoverflow.com",
+      "queryUrl": "https://stackoverflow.com/search?q"
+    },
+    {
+      "key": "twt",
+      "url": "https://twitter.com",
+      "queryUrl": "https://twitter.com/search?q"
+    },
+    {
+      "key": "gog",
+      "url": "https://google.com"
+    },
+    {
+      "key": "rdt",
+      "url": "https://reddit.com"
+    },
+    {
+      "key": "cg",
+      "url": "https://www.codegrepper.com",
+      "queryUrl": "https://www.codegrepper.com/search.php?q"
+    },
+    {
+      "key": "meet",
+      "url": "https://meet.google.com/new"
+    }
+  ]
+}
