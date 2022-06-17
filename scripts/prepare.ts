@@ -29,7 +29,7 @@ export async function writeManifest() {
   if(isDev && !isFirefox)
     log('ALERT!', 'Development in chrome doesn\'t support HMR, use Firefox instead')
 
-  await fs.writeJSON(r('extension/manifest.json'), await getManifest(), { spaces: 2 })
+  await fs.writeJSON(r('extension/manifest.json'), await getManifest(isFirefox), { spaces: 2 })
   log('PRE', 'write manifest.json')
 }
 
