@@ -9,6 +9,7 @@ components.d.ts
 .idea/
 *.log
 extension/dist
+extension/manifest.json
 superkeys.zip
 
 
