@@ -5,7 +5,14 @@ import { useState } from "preact/compat";
 import { getAutoIncId } from "../../utils";
 import browser from "webextension-polyfill";
 
-type FormValues = { queryUrl: string; subKeys: any[]; querySeparator: string; separator: string; key: string; url: string }
+type FormValues = {
+  queryUrl: string;
+  subKeys: any[];
+  querySeparator: string;
+  separator: string;
+  key: string;
+  url: string;
+};
 
 const Form = ({
   tabIndex,
@@ -33,14 +40,15 @@ const Form = ({
 
   const [showQueryForm, setShowQueryForm] = useState(!!queryUrl);
 
-  const { register, control, handleSubmit, formState, watch, reset } = useForm<FormValues>({
-    defaultValues,
-  });
+  const { register, control, handleSubmit, formState, reset } =
+    useForm<FormValues>({
+      defaultValues,
+    });
 
   console.log({ formState, checkIfExists, setCheckedOption });
 
   const { fields, append, remove } = useFieldArray({
-    name: 'subKeys',
+    name: "subKeys",
     control,
   });
 
@@ -53,14 +61,16 @@ const Form = ({
     const idToSet = existingId || getAutoIncId(keyLists);
     console.log({ idToSet, existingId });
     // if there's key, it means form is in edit mode
-    browser.storage.sync.set({ [idToSet]: { ...data, id: idToSet } }).then(() => {
-      if (!existingId) {
-        reset(defaultValues);
-        return location.replace("#");
-      }
+    browser.storage.sync
+      .set({ [idToSet]: { ...data, id: idToSet } })
+      .then(() => {
+        if (!existingId) {
+          reset(defaultValues);
+          return location.replace("#");
+        }
 
-      setCheckedOption("");
-    });
+        setCheckedOption("");
+      });
   };
 
   return (

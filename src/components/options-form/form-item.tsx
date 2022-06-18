@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify";
+import { getUniqueKey } from "../helper";
 import Form from "./form";
 
 export const FormItem = ({
@@ -17,7 +18,7 @@ export const FormItem = ({
   setSelectedIds,
   selectedIds,
 }) => {
-  const uniqueKey = key + "-" + id;
+  const uniqueKey = getUniqueKey(key, id);
   if (checkedOption === uniqueKey) console.log({ checkedOption, uniqueKey });
   const isOpen = checkedOption === uniqueKey;
 

@@ -3,6 +3,7 @@ import { FormItem } from "./form-item";
 import { FormLayout } from "../form-layout";
 import { AddKeyModal } from "./add-key-modal";
 import browser from "webextension-polyfill";
+import { getUniqueKey } from "../helper";
 
 export const OptionsForm = () => {
   const [checkedOption, setCheckedOption] = useState("");
@@ -52,27 +53,66 @@ export const OptionsForm = () => {
     if (confirm("Are you sure to delete?") === true) {
       browser.storage.sync.get(ids).then((itemsToDelete) => {
         browser.storage.sync.remove(ids).then(() => {
-          console.log({ itemsToDelete });
           downloadObjectAsJson(
-              Object.values(itemsToDelete),
-              `superkey-removed-${new Date()}`
+            Object.values(itemsToDelete),
+            `superkey-removed-${new Date().toJSON()}`
           );
         });
       });
     }
   };
 
+  const exportKeys = () => {
+    const itemsToExport = keyLists.filter((item: any) =>
+      selectedIds.includes(getUniqueKey(item.key, item.id))
+    );
+
+    downloadObjectAsJson(
+      Object.values(itemsToExport),
+      `superkey-${new Date().toJSON()}`
+    );
+  };
+
+  const isAllKeySelected = keyLists.every((item: any) =>
+    selectedIds.includes(getUniqueKey(item.key, item.id))
+  );
+
+  const selectAllKeys = () => {
+    if (isAllKeySelected) return setSelectedIds([]);
+
+    setSelectedIds(
+      keyLists.map((item: any) => getUniqueKey(item.key, item.id))
+    );
+  };
+
   return (
     <FormLayout
-      title="Key Lists"
+      title={
+        <label className="mr-2">
+          <input
+            type="checkbox"
+            className={`checkbox checkbox-accent m-[-4px]`}
+            onChange={selectAllKeys}
+            checked={isAllKeySelected}
+          />
+          <span className="text-2xl text-green-300 ml-2 italic">Key List</span>
+        </label>
+      }
       actionItems={
         <>
-          <button
-            onClick={deleteKeys}
-            className="btn btn-error btn-outline mr-2"
-          >
-            Delete
-          </button>
+          {!!selectedIds.length && (
+            <>
+              <button
+                onClick={deleteKeys}
+                className="btn btn-error btn-outline mr-2"
+              >
+                Delete
+              </button>
+              <button onClick={exportKeys} className="btn btn-outline mr-2">
+                Export
+              </button>
+            </>
+          )}
           <a href="#add-key-modal" className="btn btn-success btn-outline">
             Add Key
           </a>

@@ -8,7 +8,7 @@ node_modules
 components.d.ts
 .idea/
 *.log
-extension
+extension/dist
 superkeys.zip
 
 

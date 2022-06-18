@@ -49,3 +49,11 @@ input {
     background-image: radial-gradient(#2c2c2f 1px, #000000 1px);
     background-size: 40px 40px;
 }
+
+.file-uploader-container svg{
+    display: none;
+}
+
+.file-uploader-container label{
+    @apply mt-2 p-10
+}
