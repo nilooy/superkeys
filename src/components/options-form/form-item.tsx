@@ -1,8 +1,14 @@
 import { Icon } from "@iconify/react/dist/iconify";
 import { getUniqueKey } from "../helper";
-import Form from "./form";
+import Form, { IFormProps } from "./form";
+import { FunctionComponent } from "preact";
 
-export const FormItem = ({
+interface IFormItemProps extends IFormProps {
+  setSelectedIds: (ids: (ids: string[]) => string[]) => void | string[];
+  selectedIds: string[];
+}
+
+export const FormItem: FunctionComponent<IFormItemProps> = ({
   id,
   tabIndex = 0,
   key,
@@ -22,8 +28,9 @@ export const FormItem = ({
   if (checkedOption === uniqueKey) console.log({ checkedOption, uniqueKey });
   const isOpen = checkedOption === uniqueKey;
 
-  const onCheckboxChange = (e) => {
-    if (e.target.checked) setSelectedIds((ids) => [...ids, uniqueKey]);
+  const onCheckboxChange = (e: Event) => {
+    if ((e?.target as HTMLInputElement).checked)
+      setSelectedIds((ids: string[]) => [...ids, uniqueKey]);
     else setSelectedIds((ids) => ids.filter((id) => id !== uniqueKey));
   };
 

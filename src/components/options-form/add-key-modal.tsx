@@ -1,6 +1,17 @@
-import Form from "./form";
+import Form, { IFormProps } from "./form";
+import { FunctionComponent } from "preact";
 
-export const AddKeyModal = ({ checkIfExists, setKeyLists, keyLists }) => {
+interface IAddKeyModalProps {
+  checkIfExists: IFormProps["checkIfExists"];
+  keyLists: IFormProps["keyLists"];
+  setKeyLists: IFormProps["setKeyLists"];
+}
+
+export const AddKeyModal: FunctionComponent<IAddKeyModalProps> = ({
+  checkIfExists,
+  setKeyLists,
+  keyLists,
+}) => {
   return (
     <div
       className="modal"

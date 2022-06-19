@@ -1,4 +1,21 @@
-const Input = ({
+import { UseFormRegister } from "react-hook-form";
+import { FunctionComponent } from "preact";
+import { ISuperKey } from "../types";
+
+interface IInputProps {
+  label?: string;
+  type?: string;
+  placeholder?: string;
+  labelClass?: string;
+  inputClass?: string;
+  wrapperClass?: string;
+  fullWidth?: boolean;
+  register: UseFormRegister<ISuperKey> | ((name: any) => void);
+  name?: string;
+  required?: boolean;
+}
+
+const Input: FunctionComponent<IInputProps> = ({
   label,
   type = "text",
   placeholder,

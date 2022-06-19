@@ -1,29 +1,19 @@
-import browser from 'webextension-polyfill'
+import browser from "webextension-polyfill";
+import { ISearchHandler } from "../../types";
 
-const HANDLER = {
-  key: "key",
-  separator: ":",
-  queryUrl: "",
-  querySeparator: "",
-  queryBuilder: () => {}, // required
-  subKeys: [],
-};
-
-const queryBuilder = (terms) => {
-  return terms;
-};
-
-export const DEFAULT_VALUES = {
+export const DEFAULT_VALUES: {
+  separator: string;
+  querySeparator: string;
+} = {
   separator: " ",
   querySeparator: "-",
-  queryBuilder,
 };
 
-const isValidUrl = (string) => {
+const isValidUrl = (urlString: string) => {
   let url;
 
   try {
-    url = new URL(string);
+    url = new URL(urlString);
   } catch (_) {
     return false;
   }
@@ -31,7 +21,7 @@ const isValidUrl = (string) => {
   return ["https:", "http:", "chrome:", "file:"].includes(url.protocol);
 };
 
-export const buildSearchUrl = ({ keyItem, value }) => {
+export const buildSearchUrl = ({ keyItem, value }: ISearchHandler) => {
   const { queryUrl, subKeys = [], searchValue } = keyItem || {};
 
   // Handle when no search query url and no subKeys is found
@@ -48,7 +38,7 @@ export const buildSearchUrl = ({ keyItem, value }) => {
   return value;
 };
 
-export const fireSubmitAction = ({ keyItem, value= '' }) => {
+export const fireSubmitAction = ({ keyItem, value = "" }: ISearchHandler) => {
   const searchUrl = buildSearchUrl({ keyItem, value });
 
   if (!searchUrl) return;
@@ -57,9 +47,11 @@ export const fireSubmitAction = ({ keyItem, value= '' }) => {
     return browser.tabs.create({
       url: searchUrl,
     });
-  else
+  else {
     return browser.search.search({
+      // @ts-ignore // FIXME
       disposition: "NEW_TAB",
-      query: searchUrl
+      query: searchUrl,
     });
+  }
 };

@@ -4,18 +4,20 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useState } from "preact/compat";
 import { getAutoIncId } from "../../utils";
 import browser from "webextension-polyfill";
+import { ISuperKey, ISuperKeyOptional } from "../../types";
+import { FunctionComponent } from "preact/compat";
 
-type FormValues = {
-  queryUrl: string;
-  subKeys: any[];
-  querySeparator: string;
-  separator: string;
-  key: string;
-  url: string;
-};
+// ISuperKeyOptional as the form is used for both create and update
+export interface IFormProps extends ISuperKeyOptional {
+  tabIndex?: number;
+  checkedOption?: string;
+  setCheckedOption?: (option: string) => void;
+  checkIfExists?: (key: string) => boolean;
+  setKeyLists: (option: ISuperKey[]) => void;
+  keyLists: ISuperKey[];
+}
 
-const Form = ({
-  tabIndex,
+const Form: FunctionComponent<IFormProps> = ({
   id: existingId,
   key = "",
   separator = "",
@@ -26,7 +28,6 @@ const Form = ({
   checkedOption,
   setCheckedOption,
   checkIfExists,
-  setKeyLists,
   keyLists,
 }) => {
   const defaultValues = {
@@ -41,7 +42,7 @@ const Form = ({
   const [showQueryForm, setShowQueryForm] = useState(!!queryUrl);
 
   const { register, control, handleSubmit, formState, reset } =
-    useForm<FormValues>({
+    useForm<ISuperKey>({
       defaultValues,
     });
 
@@ -54,7 +55,7 @@ const Form = ({
 
   console.log({ checkedOption, setCheckedOption });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: ISuperKey) => {
     // data.key is the new key
     if (checkIfExists?.(data.key)) return alert("already exists");
 
@@ -69,7 +70,9 @@ const Form = ({
           return location.replace("#");
         }
 
-        setCheckedOption("");
+        if (setCheckedOption) {
+          setCheckedOption("");
+        }
       });
   };
 
@@ -121,14 +124,6 @@ const Form = ({
                   label="Query Url"
                   fullWidth
                 />
-              </Col>
-              <Col span={6}>
-                {/*<Input*/}
-                {/*  label="Query Separator"*/}
-                {/*  register={register}*/}
-                {/*  name="querySeparator"*/}
-                {/*  fullWidth*/}
-                {/*/>*/}
               </Col>
             </Row>
           )}

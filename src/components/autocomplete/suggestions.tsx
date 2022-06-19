@@ -1,5 +1,7 @@
 import { DEFAULT_VALUES } from "./search-handler";
 import browser from "webextension-polyfill";
+import { FunctionComponent } from "preact";
+import { ISuperKeyOptional } from "../../types";
 
 const style = {
   activeItem: "bg-gray-800 text-white",
@@ -7,7 +9,16 @@ const style = {
   list: `shadow-xl top-full left-0 right-0 border w-auto md:max-w-full overflow-y-auto max-h-80 mt-2 p-3 z-20`,
 };
 
-const Suggestions = ({
+export interface ISuggestionsProps {
+  activeSuggestion: number;
+  filteredSuggestions: ISuperKeyOptional[];
+  suggestions: ISuperKeyOptional[];
+  showSuggestions: boolean;
+  value: string;
+  onSuggestionClick: (keyItem: object | string) => void;
+}
+
+const Suggestions: FunctionComponent<ISuggestionsProps> = ({
   activeSuggestion,
   filteredSuggestions = [],
   suggestions = [],
@@ -17,7 +28,7 @@ const Suggestions = ({
 }) => {
   if (!showSuggestions || !value) return null;
 
-  // TODO: Apply dry principle: ref: `getByKey` function
+  // TODO: remove duplicate codes: ref: `getByKey` function
   const showTypedValue = filteredSuggestions?.[0]?.key !== value;
 
   const keyFromValue = value.split(DEFAULT_VALUES.separator)?.[0];

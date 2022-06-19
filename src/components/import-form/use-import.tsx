@@ -1,20 +1,22 @@
 import { useState } from "preact/compat";
 import { getAutoIncId } from "../../utils";
 import browser from "webextension-polyfill";
+import { ISuperKey, ISuperKeyOptional } from "../../types";
 
-export const useImport = (file) => {
-  const [dataToImport, setDataToImport] = useState([]);
-  const [allData, setAllData] = useState([]);
+export const useImport = () => {
+  const [dataToImport, setDataToImport] = useState<ISuperKeyOptional[]>([]);
+  const [allData, setAllData] = useState<ISuperKey[]>([]);
 
-  const onJsonUpload = (file) => {
+  const onJsonUpload = (file: File) => {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = onReaderLoad;
     reader.readAsText(file);
   };
 
-  const onReaderLoad = (event) => {
-    const jsonData = JSON.parse(event.target.result) || [];
+  const onReaderLoad = (event: Event) => {
+    const jsonData =
+      JSON.parse((event?.target as HTMLInputElement | any).result!) || [];
 
     browser.storage.sync.get(null).then((items) => {
       if (items) {
@@ -42,7 +44,8 @@ export const useImport = (file) => {
     });
   };
 
-  const isKeyUnique = (key) => !allData.find((item) => item.key === key);
+  const isKeyUnique = (key: string | undefined) =>
+    !allData.find((item) => item.key === key);
 
   const duplicatedData = dataToImport?.filter((item) => item.duplicate);
 

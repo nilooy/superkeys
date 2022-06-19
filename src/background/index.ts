@@ -1,34 +1,29 @@
-import browser from 'webextension-polyfill'
-import {keyLists} from './superkey.db.json'
+import browser from "webextension-polyfill";
+import { keyLists } from "./superkey.db.json";
 
 const KEY_PREFIX = "superkey";
 
-function handleSearch(info, tab) {
-  console.log({ info, tab });
-
+function handleSearch(info: any, tab: any) {
   const [keyPrefix, indexKey] = info.menuItemId.split("-");
 
   if (keyPrefix !== KEY_PREFIX || !info.selectionText) return;
 
-  browser.storage.sync.get(indexKey).then(item => {
+  browser.storage.sync.get(indexKey).then((item) => {
     const keyItem = item[indexKey];
     console.log({ keyItem });
 
     browser.tabs.create({
       url: `${keyItem.queryUrl}=${encodeURI(info.selectionText)}`,
     });
-  })
-
-
+  });
 }
 
 browser.runtime.onInstalled.addListener(async () => {
-
   keyLists.forEach((keyItem, index) => {
     const indexKey = index + 1;
-    browser.storage.sync.set(
-        { [indexKey]: { id: indexKey, ...keyItem } },
-    ).then(()=>  browser.runtime.openOptionsPage())
+    browser.storage.sync
+      .set({ [indexKey]: { id: indexKey, ...keyItem } })
+      .then(() => browser.runtime.openOptionsPage());
 
     // context menu
     if (keyItem.queryUrl) {

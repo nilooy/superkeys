@@ -1,15 +1,14 @@
 import Suggestions from "./suggestions";
 import { useAutocomplete } from "./use-autocomplete";
+import { FunctionComponent } from "preact";
 
-/* Logic */
-
-const style = {
+const style: { default: string; disabled: string; label: string } = {
   label: `text-gray-700`,
   disabled: `cursor-not-allowed`,
   default: `input input-bordered w-[600px] shadow-lg`,
 };
 
-export const Autocomplete = () => {
+export const Autocomplete: FunctionComponent = () => {
   const {
     activeSuggestion,
     filteredSuggestions,

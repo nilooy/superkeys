@@ -4,13 +4,15 @@ import { FormLayout } from "../form-layout";
 import { AddKeyModal } from "./add-key-modal";
 import browser from "webextension-polyfill";
 import { getUniqueKey } from "../helper";
+import { ISuperKey } from "../../types";
+import { FunctionComponent } from "preact";
 
-export const OptionsForm = () => {
-  const [checkedOption, setCheckedOption] = useState("");
-  const [keyLists, setKeyLists] = useState([]);
-  const [selectedIds, setSelectedIds] = useState([]);
+export const OptionsForm: FunctionComponent = () => {
+  const [checkedOption, setCheckedOption] = useState<string>("");
+  const [keyLists, setKeyLists] = useState<ISuperKey[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  const getAllKeys = (collapseAll?) => {
+  const getAllKeys = (collapseAll?: boolean) => {
     browser.storage.sync.get(null).then((items) => {
       if (items) {
         setKeyLists(Object?.values(items)?.sort((a, b) => a.id - b.id)); // sort by id
@@ -27,10 +29,13 @@ export const OptionsForm = () => {
     });
   }, []);
 
-  const checkIfExists = (newKey) =>
-    !!keyLists?.find((keyList) => keyList.key === newKey);
+  const checkIfExists = (newKey: string): boolean =>
+    !!keyLists?.find((keyList: ISuperKey) => keyList.key === newKey);
 
-  const downloadObjectAsJson = (exportObj, exportName) => {
+  const downloadObjectAsJson = (
+    exportObj: ISuperKey[],
+    exportName: string = "superkeys"
+  ) => {
     const dataStr =
       "data:text/json;charset=utf-8," +
       encodeURIComponent(JSON.stringify(exportObj));
@@ -50,7 +55,7 @@ export const OptionsForm = () => {
 
     const ids = selectedIds.map((id) => id.split("-")?.[1]);
 
-    if (confirm("Are you sure to delete?") === true) {
+    if (confirm("Are you sure to delete?")) {
       browser.storage.sync.get(ids).then((itemsToDelete) => {
         browser.storage.sync.remove(ids).then(() => {
           downloadObjectAsJson(

@@ -3,11 +3,12 @@ import { useMemo, useState } from "preact/compat";
 import { FileUploader } from "react-drag-drop-files";
 import { useImport } from "./use-import";
 import { Icon } from "@iconify/react/dist/iconify";
+import { ISuperKeyOptional } from "../../types";
 
 const fileTypes = ["JSON"];
 
 const Index = () => {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File>(null!);
 
   const {
     onJsonUpload,
@@ -16,20 +17,20 @@ const Index = () => {
     isKeyUnique,
     startImport,
     dataToImport,
-  } = useImport(file);
+  } = useImport();
 
-  const handleChange = (file) => {
+  const handleChange = (file: File) => {
     setFile(file);
     onJsonUpload(file);
   };
 
-  const handleDuplicateDataChange = (e, item) => {
+  const handleDuplicateDataChange = (e: Event, item: ISuperKeyOptional) => {
     setDataToImport(
       duplicatedData.map((data) =>
         data.id === item.id
           ? {
               ...item,
-              key: e.target.value,
+              key: (e.target as HTMLInputElement).value,
             }
           : data
       )
@@ -38,10 +39,10 @@ const Index = () => {
 
   const duplicatedList = useMemo(
     () =>
-      duplicatedData?.map((item) => {
+      duplicatedData?.map((item: ISuperKeyOptional) => {
         const isDuplicateKey = !isKeyUnique(item.key);
         return (
-          <div class="form-control my-2" key={item.id.toString()}>
+          <div class="form-control my-2" key={item.id?.toString()}>
             <label class="input-group">
               <span
                 className={`${isDuplicateKey ? "text-error" : "text-success"}`}
