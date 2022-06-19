@@ -1,8 +1,6 @@
 export const getAutoIncId = (array, count) => {
     let id = count || array.length;
 
-    console.log({ id, count });
-
     if (!!array.find((item) => item.id === id)) {
         // console.log({ test: array.find((item) => item.id === id) });
         return getAutoIncId(array, id + 1);

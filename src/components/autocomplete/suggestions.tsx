@@ -1,10 +1,10 @@
 import { DEFAULT_VALUES } from "./search-handler";
-import browser from 'webextension-polyfill'
+import browser from "webextension-polyfill";
 
 const style = {
   activeItem: "bg-gray-800 text-white",
   item: `px-4 py-3 focus text-sm text-gray-200 cursor-pointer hover:bg-gray-600`,
-  list: `shadow-xl absolute top-full left-0 right-0 border w-auto md:max-w-full overflow-y-auto max-h-80 mt-2 p-3 z-20`,
+  list: `shadow-xl top-full left-0 right-0 border w-auto md:max-w-full overflow-y-auto max-h-80 mt-2 p-3 z-20`,
 };
 
 const Suggestions = ({
@@ -29,8 +29,6 @@ const Suggestions = ({
   // No sub query found and matched with key with space, can trigger search query
   const showSearchMessageUrl =
     !filteredSuggestions.length && keyToFind?.queryUrl && keyToFind?.url;
-
-  console.log({ showTypedValue, keyToFind, showSearchMessageUrl });
 
   return (
     <div>

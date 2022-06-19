@@ -1,18 +1,10 @@
-import { useEffect, useState } from "preact/compat";
+import { useState } from "preact/compat";
+import { getAutoIncId } from "../../utils";
 import browser from "webextension-polyfill";
 
 export const useImport = (file) => {
-  const [dataToImport, setDataToImport] = useState();
-  const [duplicatedData, setDuplicatedData] = useState();
-  const [allData, setAllData] = useState();
-
-  useEffect(() => {
-    browser.storage.sync.get(null).then((items) => {
-      if (items) {
-        setAllData(Object?.values(items)?.sort((a, b) => a.id - b.id)); // sort by id
-      }
-    });
-  }, []);
+  const [dataToImport, setDataToImport] = useState([]);
+  const [allData, setAllData] = useState([]);
 
   const onJsonUpload = (file) => {
     if (!file) return;
@@ -22,31 +14,51 @@ export const useImport = (file) => {
   };
 
   const onReaderLoad = (event) => {
-    const data = JSON.parse(event.target.result) || [];
+    const jsonData = JSON.parse(event.target.result) || [];
 
     browser.storage.sync.get(null).then((items) => {
       if (items) {
-        const savedArray = Object.values(items);
-        const filtered = data.filter((each) =>
-          savedArray.find((item) => each.key === item.key)
+        const existingItems: any = Object.values(items) || [];
+
+        const importData = jsonData.map((jsonItem: any) =>
+          existingItems.find(
+            (existingItem: any) => jsonItem.key === existingItem.key
+          ) ||
+          jsonData.find(
+            (jsonItemEach: any) => jsonItem.key === jsonItemEach.key
+          )
+            ? {
+                ...jsonItem,
+                duplicate: true,
+                id: jsonItem.id || getAutoIncId(existingItems),
+              }
+            : { jsonItem, id: jsonItem.id || getAutoIncId(existingItems) }
         );
-        setDuplicatedData(filtered);
+
+        setDataToImport(importData);
+        // Save all data from storage
+        setAllData(existingItems);
       }
     });
-
-    setAllData(data);
   };
 
   const isKeyUnique = (key) => !allData.find((item) => item.key === key);
 
-  console.log({ duplicatedData, dataToImport });
+  const duplicatedData = dataToImport?.filter((item) => item.duplicate);
+
+  const startImport = () => {
+    dataToImport.forEach((item) => {
+      const idToSet = item.id || getAutoIncId(allData);
+      browser.storage.sync.set({ [idToSet]: { ...item, id: idToSet } });
+    });
+  };
 
   return {
     onJsonUpload,
     duplicatedData,
-    setDuplicatedData,
     dataToImport,
     setDataToImport,
     isKeyUnique,
+    startImport,
   };
 };
