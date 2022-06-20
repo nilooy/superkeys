@@ -10,7 +10,6 @@ function handleSearch(info: any, tab: any) {
 
   browser.storage.sync.get(indexKey).then((item) => {
     const keyItem = item[indexKey];
-    console.log({ keyItem });
 
     browser.tabs.create({
       url: `${keyItem.queryUrl}=${encodeURI(info.selectionText)}`,
@@ -39,11 +38,7 @@ browser.runtime.onInstalled.addListener(async () => {
 browser.contextMenus.onClicked.addListener(handleSearch);
 
 browser.storage.onChanged.addListener(function (changes) {
-  console.log({ changes });
-
   const { newValue } = Object.values(changes)?.[0] || {};
-
-  console.log({ newValue, id: `${KEY_PREFIX}-${newValue.id}` });
 
   if (newValue.queryUrl)
     browser.contextMenus.create({

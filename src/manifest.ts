@@ -1,34 +1,33 @@
-import type { Manifest } from 'webextension-polyfill'
-import pkg from '../package.json'
-import { isDev, port } from '../scripts/utils'
+import pkg from "../package.json";
+import { isDev, port } from "../scripts/utils";
 
 // TODO: Add return typedef
-export async function getManifest(isFirefox: boolean = false)  {
+export async function getManifest(isFirefox: boolean = false) {
   // update this file to update this manifest.json
   // can also be conditional based on your need
-  const optionPath = './dist/options/index.html'
-  const popupPath = './dist/popup/index.html'
-  const backgroundPath = './dist/background/index.global.js'
+  const optionPath = "./dist/options/index.html";
+  const popupPath = "./dist/popup/index.html";
+  const backgroundPath = "./dist/background/index.global.js";
   const contentSecurityPolicy = isDev
-      ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
-      : undefined
+    ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
+    : undefined;
 
-  const icons= {
-    16: './assets/img/logo16.png',
-    48: './assets/img/logo48.png',
-    128: './assets/img/logo128.png',
-  }
+  const icons = {
+    16: "./assets/img/logo16.png",
+    48: "./assets/img/logo48.png",
+    128: "./assets/img/logo128.png",
+  };
 
   const shortCut = {
-    [`_execute${isFirefox ? '_browser': ''}_action`]: {
+    [`_execute${isFirefox ? "_browser" : ""}_action`]: {
       suggested_key: {
         windows: "Ctrl+Shift+V",
-        mac: "Command+Shift+V"
-      }
-    }
-  }
+        mac: "Command+Shift+V",
+      },
+    },
+  };
 
-  const firefoxSpecific  = {
+  const firefoxSpecific = {
     manifest_version: 2,
     browser_action: {
       default_icon: icons,
@@ -46,25 +45,24 @@ export async function getManifest(isFirefox: boolean = false)  {
     browser_specific_settings: {
       gecko: {
         id: "superkeys@gmail.com",
-        strict_min_version: "42.0"
-      }
+        strict_min_version: "42.0",
+      },
     },
-    content_security_policy: contentSecurityPolicy
-  }
+    content_security_policy: contentSecurityPolicy,
+  };
   const chromeSpecific = {
     manifest_version: 3,
     action: {
-      default_popup: popupPath
+      default_popup: popupPath,
     },
     options_page: optionPath,
     background: {
-      service_worker: backgroundPath
+      service_worker: backgroundPath,
     },
     content_security_policy: {
       extension_pages: contentSecurityPolicy,
-
-    }
-  }
+    },
+  };
 
   const common = {
     name: pkg.displayName || pkg.name,
@@ -72,26 +70,26 @@ export async function getManifest(isFirefox: boolean = false)  {
     description: pkg.description,
     content_scripts: [
       {
-        matches: ['http://*/*', 'https://*/*'],
-        js: ['./dist/content/index.global.js'],
+        matches: ["http://*/*", "https://*/*"],
+        js: ["./dist/content/index.global.js"],
       },
     ],
     icons,
     permissions: [
-      'tabs',
-      'storage',
+      "tabs",
+      "storage",
+      "search",
       "contextMenus",
-      'activeTab',
-      'http://*/',
-      'https://*/'
+      "activeTab",
+      "https://*/*",
+      "https://*/*",
     ],
 
-  commands: shortCut
-  }
+    commands: shortCut,
+  };
 
   return {
-    ...common, ...(isFirefox ? firefoxSpecific : chromeSpecific)
-  }
-
-
+    ...common,
+    ...(isFirefox ? firefoxSpecific : chromeSpecific),
+  };
 }

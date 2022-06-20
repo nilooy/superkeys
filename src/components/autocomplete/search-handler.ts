@@ -27,7 +27,7 @@ export const buildSearchUrl = ({ keyItem, value }: ISearchHandler) => {
   // Handle when no search query url and no subKeys is found
   if (keyItem?.url && !queryUrl && !subKeys.length) return keyItem.url;
   // just to make it less complex
-  if (queryUrl && !searchValue) return keyItem.url;
+  if (queryUrl && !searchValue) return keyItem?.url;
 
   // Check if sub-keys match with keywords
   const findSubKey = subKeys.find((subKey) => subKey?.key === searchValue);
@@ -49,8 +49,6 @@ export const fireSubmitAction = ({ keyItem, value = "" }: ISearchHandler) => {
     });
   else {
     return browser.search.search({
-      // @ts-ignore // FIXME
-      disposition: "NEW_TAB",
       query: searchUrl,
     });
   }

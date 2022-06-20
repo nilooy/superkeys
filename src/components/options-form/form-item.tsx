@@ -25,7 +25,6 @@ export const FormItem: FunctionComponent<IFormItemProps> = ({
   selectedIds,
 }) => {
   const uniqueKey = getUniqueKey(key, id);
-  if (checkedOption === uniqueKey) console.log({ checkedOption, uniqueKey });
   const isOpen = checkedOption === uniqueKey;
 
   const onCheckboxChange = (e: Event) => {

@@ -46,21 +46,16 @@ const Form: FunctionComponent<IFormProps> = ({
       defaultValues,
     });
 
-  console.log({ formState, checkIfExists, setCheckedOption });
-
   const { fields, append, remove } = useFieldArray({
     name: "subKeys",
     control,
   });
-
-  console.log({ checkedOption, setCheckedOption });
 
   const onSubmit = (data: ISuperKey) => {
     // data.key is the new key
     if (checkIfExists?.(data.key)) return alert("already exists");
 
     const idToSet = existingId || getAutoIncId(keyLists);
-    console.log({ idToSet, existingId });
     // if there's key, it means form is in edit mode
     browser.storage.sync
       .set({ [idToSet]: { ...data, id: idToSet } })

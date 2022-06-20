@@ -92,35 +92,31 @@ export const useAutocomplete = () => {
       value,
     });
   };
+  // (e.target as HTMLInputElement).value
+
+  const keyBoardEvents: any = {
+    Enter: (value: string): any =>
+      activeSuggestion
+        ? // activeSuggestion == 0 should be the input value
+          fireSubmitAction({
+            keyItem: filteredSuggestions[activeSuggestion - 1],
+          })
+        : fireSubmitAction({
+            value,
+            keyItem: getByKey(value),
+          }),
+    ArrowUp: () =>
+      activeSuggestion && setActiveSuggestion(activeSuggestion - 1),
+    ArrowDown: () =>
+      activeSuggestion - 1 !== filteredSuggestions.length &&
+      setActiveSuggestion(activeSuggestion + 1),
+  };
 
   const onKeyDown = (e: KeyboardEvent) => {
-    // User pressed the enter key
-    if (e.code === "13") {
-      if (activeSuggestion)
-        // activeSuggestion == 0 should be the input value
-        fireSubmitAction({
-          keyItem: filteredSuggestions[activeSuggestion - 1],
-        });
-      else
-        fireSubmitAction({
-          value: (e.target as HTMLInputElement).value,
-          keyItem: getByKey(value),
-        });
-    }
-    // User pressed the up arrow
-    if (e.code === "38") {
-      if (activeSuggestion === 0) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion - 1);
-    }
-    // User pressed the down arrow
-    else if (e.code === "40") {
-      if (activeSuggestion - 1 === filteredSuggestions.length) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion + 1);
-    }
+    const keyCode: string = e.code;
+    const { value } = e.target as HTMLInputElement;
+
+    keyBoardEvents[keyCode]?.(value);
   };
 
   return {

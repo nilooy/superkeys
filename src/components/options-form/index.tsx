@@ -48,10 +48,7 @@ export const OptionsForm: FunctionComponent = () => {
   };
 
   const deleteKeys = () => {
-    console.log("delete");
     if (!selectedIds?.length) return alert("No key has been selected");
-
-    console.log({ selectedIds });
 
     const ids = selectedIds.map((id) => id.split("-")?.[1]);
 
