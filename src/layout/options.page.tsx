@@ -2,8 +2,9 @@ import Navbar from "./navbar";
 import { OptionsForm } from "../components/options-form";
 import { useEffect, useState } from "preact/compat";
 import ImportForm from "../components/import-form";
+import { FunctionComponent } from "preact";
 
-const OptionsPage = () => {
+const OptionsPage: FunctionComponent = () => {
   const [hash, setHash] = useState("");
 
   useEffect(() => {

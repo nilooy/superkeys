@@ -4,37 +4,26 @@ import { FileUploader } from "react-drag-drop-files";
 import { useImport } from "./use-import";
 import { Icon } from "@iconify/react/dist/iconify";
 import { ISuperKeyOptional } from "../../types";
+import { FunctionComponent } from "preact";
 
 const fileTypes = ["JSON"];
 
-const Index = () => {
+const Index: FunctionComponent = () => {
   const [file, setFile] = useState<File>(null!);
 
   const {
     onJsonUpload,
     duplicatedData,
-    setDataToImport,
     isKeyUnique,
     startImport,
     dataToImport,
+    newKeysCount,
+    handleDuplicateDataChange,
   } = useImport();
 
   const handleChange = (file: File) => {
     setFile(file);
     onJsonUpload(file);
-  };
-
-  const handleDuplicateDataChange = (e: Event, item: ISuperKeyOptional) => {
-    setDataToImport(
-      duplicatedData.map((data) =>
-        data.id === item.id
-          ? {
-              ...item,
-              key: (e.target as HTMLInputElement).value,
-            }
-          : data
-      )
-    );
   };
 
   const duplicatedList = useMemo(
@@ -65,6 +54,7 @@ const Index = () => {
                   isDuplicateKey ? "input-error" : "input-success"
                 }`}
                 onChange={(e) => handleDuplicateDataChange(e, item)}
+                required
               />
             </label>
           </div>
@@ -72,8 +62,6 @@ const Index = () => {
       }),
     [duplicatedData]
   );
-
-  const newKeysCount = dataToImport?.length - duplicatedData?.length;
 
   return (
     <FormLayout
@@ -100,21 +88,29 @@ const Index = () => {
         <div class="alert alert-warning shadow-lg">
           <div className="m-auto">
             <Icon icon="akar-icons:triangle-alert" className="mr-1" />
-            <p>
-              These keys exists already! Keys need to be unique. You can change
-              theme here or directly on the .json file
-            </p>
+            <span className="text-center">
+              <p>
+                These keys exists already! Keys need to be unique. You can
+                change theme here or directly on the .json file
+              </p>
+              <p className="text-gray-800">
+                OR click `Start Import` leaving them unchanged to update.
+              </p>
+            </span>
           </div>
         </div>
       )}
 
       <div className="m-auto">{duplicatedList}</div>
 
-      {!!newKeysCount && (
+      {!!dataToImport?.length && !newKeysCount && (
         <div class="alert shadow-lg mt-3">
           <div className="m-auto">
             <Icon icon="dashicons:database-import" className="mr-1" />
-            <p>Click 'Start Import' button to import {newKeysCount} keys</p>
+            <p>
+              Click 'Start Import' button to import {dataToImport.length}{" "}
+              {dataToImport.length > 1 ? "keys" : "key"}{" "}
+            </p>
           </div>
         </div>
       )}

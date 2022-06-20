@@ -51,7 +51,7 @@ export const FormItem: FunctionComponent<IFormItemProps> = ({
       >
         <button
           onClick={() =>
-            isOpen ? setCheckedOption("") : setCheckedOption(uniqueKey)
+            isOpen ? setCheckedOption?.("") : setCheckedOption?.(uniqueKey)
           }
           className={`flex justify-between items-center w-full ${
             isOpen ? "bg-gray-600" : ""

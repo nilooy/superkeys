@@ -97,7 +97,9 @@ export const OptionsForm: FunctionComponent = () => {
             onChange={selectAllKeys}
             checked={isAllKeySelected}
           />
-          <span className="text-2xl text-green-300 ml-2 italic">Key List</span>
+          <span className="text-2xl text-green-300 ml-2 italic">
+            Key List ({keyLists.length})
+          </span>
         </label>
       }
       actionItems={

@@ -12,6 +12,7 @@ export interface ISuperKey {
   key: string;
   url: string;
   duplicate?: boolean;
+  edited?: boolean;
 }
 
 export interface ISuperKeyOptional {
@@ -22,8 +23,9 @@ export interface ISuperKeyOptional {
   separator?: string;
   key?: string;
   url?: string;
-  duplicate?: boolean;
   searchValue?: string;
+  duplicate?: boolean;
+  edited?: boolean;
 }
 
 export interface ISearchHandler {

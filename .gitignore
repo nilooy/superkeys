@@ -10,6 +10,7 @@ components.d.ts
 *.log
 extension/dist
 extension/manifest.json
+extension/web-ext-artifacts
 superkeys.zip
 
 

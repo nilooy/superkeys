@@ -80,6 +80,7 @@ export async function getManifest(isFirefox: boolean = false) {
       "storage",
       "search",
       "contextMenus",
+      "notifications",
       "activeTab",
       "https://*/*",
       "https://*/*",
