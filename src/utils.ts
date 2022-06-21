@@ -1,4 +1,5 @@
 import { ISuperKeyOptional } from "./types";
+import browser from "webextension-polyfill";
 
 export const getAutoIncId = (
   array: ISuperKeyOptional[],
@@ -11,4 +12,9 @@ export const getAutoIncId = (
   }
 
   return id || 1; // zero not allowed as id
+};
+
+export const checkFirefoxBrowser = async (): Promise<boolean> => {
+  const { name } = (await browser.runtime.getBrowserInfo?.()) || {};
+  return name === "Firefox";
 };

@@ -40,6 +40,7 @@ export const Autocomplete: FunctionComponent = () => {
           value,
           onSuggestionClick,
           suggestions,
+          onKeyDown,
         }}
       />
     </div>

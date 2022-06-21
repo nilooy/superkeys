@@ -19,12 +19,31 @@ const Index: FunctionComponent = () => {
     dataToImport,
     newKeysCount,
     handleDuplicateDataChange,
+    success,
   } = useImport();
 
   const handleChange = (file: File) => {
     setFile(file);
     onJsonUpload(file);
   };
+
+  if (success)
+    return (
+      <div className="hero bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold text-green-500 flex">
+              <Icon icon={"clarity:success-standard-line"} className="mr-1" />
+              Import Successful
+            </h1>
+            <p className="py-6 text-2xl">
+              {dataToImport.length} {dataToImport.length > 1 ? "keys" : "key"}{" "}
+              imported successfully
+            </p>
+          </div>
+        </div>
+      </div>
+    );
 
   const duplicatedList = useMemo(
     () =>

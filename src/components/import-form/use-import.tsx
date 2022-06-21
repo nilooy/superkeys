@@ -6,6 +6,7 @@ import { ISuperKey, ISuperKeyOptional } from "../../types";
 export const useImport = () => {
   const [dataToImport, setDataToImport] = useState<ISuperKeyOptional[]>([]);
   const [allData, setAllData] = useState<ISuperKey[]>([]);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const onJsonUpload = (file: File) => {
     if (!file) return;
@@ -77,6 +78,7 @@ export const useImport = () => {
 
     try {
       await Promise.all(dataImportAsync);
+      setSuccess(true);
       await browser.notifications.create(
         `superkeys-import-${new Date().getTime()}`,
         {
@@ -89,7 +91,7 @@ export const useImport = () => {
           iconUrl: browser.runtime.getURL("assets/img/logo128.png"),
         }
       );
-      await browser.runtime.openOptionsPage();
+      // setTimeout(async () => await browser.runtime.openOptionsPage(), 2000);
     } catch (e) {
       console.error({ e });
     }
@@ -120,5 +122,6 @@ export const useImport = () => {
     startImport,
     newKeysCount,
     handleDuplicateDataChange,
+    success,
   };
 };

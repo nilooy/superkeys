@@ -21,8 +21,8 @@ export async function getManifest(isFirefox: boolean = false) {
   const shortCut = {
     [`_execute${isFirefox ? "_browser" : ""}_action`]: {
       suggested_key: {
-        windows: "Ctrl+Shift+V",
-        mac: "Command+Shift+V",
+        windows: "Alt+Space",
+        mac: "Alt+Space",
       },
     },
   };
@@ -82,8 +82,6 @@ export async function getManifest(isFirefox: boolean = false) {
       "contextMenus",
       "notifications",
       "activeTab",
-      "https://*/*",
-      "https://*/*",
     ],
 
     commands: shortCut,

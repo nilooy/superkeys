@@ -16,6 +16,7 @@ export interface ISuggestionsProps {
   showSuggestions: boolean;
   value: string;
   onSuggestionClick: (keyItem: object | string) => void;
+  onKeyDown: any;
 }
 
 const Suggestions: FunctionComponent<ISuggestionsProps> = ({
@@ -25,6 +26,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
   showSuggestions,
   value,
   onSuggestionClick,
+  onKeyDown,
 }) => {
   if (!showSuggestions || !value) return null;
 
