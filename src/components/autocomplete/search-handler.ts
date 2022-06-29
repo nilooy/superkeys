@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
 import { ISearchHandler } from "../../types";
-import { checkFirefoxBrowser, isFirefoxBrowser } from "../../utils";
+import { checkFirefoxBrowser } from "../../utils";
 
 export const DEFAULT_VALUES: {
   separator: string;
@@ -48,14 +48,14 @@ export const fireSubmitAction = async ({
   if (!searchUrl) return;
 
   if (isValidUrl(searchUrl))
-    return browser.tabs.create({
+    browser.tabs.create({
       url: searchUrl,
     });
   else {
     const isFirefoxBrowser: boolean = await checkFirefoxBrowser();
     const browserSearchMethod: any = isFirefoxBrowser
       ? browser.search?.search
-      : chrome.search.query;
+      : chrome.search.query; // chrome => global
     const searchParams = isFirefoxBrowser
       ? {
           query: searchUrl,
@@ -65,6 +65,7 @@ export const fireSubmitAction = async ({
           disposition: "NEW_TAB",
         };
 
-    return browserSearchMethod(searchParams);
+    browserSearchMethod(searchParams);
   }
+  window.close();
 };
