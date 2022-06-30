@@ -2,36 +2,29 @@
   "name": "superkeys",
   "displayName": "SuperKeys",
   "description": "_THIS EXTENSION IS IN BETA_ Superkeys allow users to add short keys for websites and make search query in those sites.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "scripts": {
     "start": "npm run dev:firefox",
-
     "dev:chrome": "run-p chrome:*",
     "dev:firefox": "run-p firefox:*",
-
     "chrome:prepare": "esno scripts/prepare.ts build --watch",
     "chrome:watch": "vite",
     "chrome:preview": "vite preview",
     "chrome:build": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
     "chrome:open": "npm run wait && web-ext run -t chromium --start-url \"https://stackoverflow.com\" --source-dir ./extension/",
-
     "firefox:prepare": "esno scripts/prepare.ts build --firefox --watch",
     "firefox:web": "vite build --watch",
     "firefox:preview": "vite preview",
     "firefox:build": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
     "firefox:open": "npm run wait && web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./extension/ --no-reload --browser-console",
-
     "wait": "wait-on http://localhost:4173/options/index.html",
     "clear": "rimraf extension/dist extension/manifest.json",
-
     "build:chrome": "run-s clear build:web build:prepare build:js",
     "build:firefox": "run-s clear build:web 'build:prepare -- --firefox' build:js",
-
     "build:prepare": "esno scripts/prepare.ts build",
     "build:web": "vite build",
     "build:js": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
-
     "prod:chrome": "run-s build:chrome && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/chrome",
     "prod:firefox": "run-s build:firefox && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/firefox"
   },
