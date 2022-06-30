@@ -66,7 +66,7 @@ export async function getManifest(isFirefoxInArg: boolean = false) {
 
   const common = {
     name: pkg.displayName || pkg.name,
-    version: pkg.version,
+    version: pkg.version.substring(0, 5),
     description: pkg.description,
     content_scripts: [
       {

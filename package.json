@@ -23,6 +23,7 @@
     "build:prepare": "esno scripts/prepare.ts build",
     "build:web": "vite build",
     "build:js": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
+    "prod": "run-s prod:chrome prod:firefox",
     "prod:chrome": "run-s build:chrome && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/chrome",
     "prod:firefox": "run-s build:firefox && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/firefox",
     "wait": "wait-on http://localhost:4173/options/index.html",
