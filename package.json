@@ -30,6 +30,8 @@
     "prod:chrome": "run-s build:chrome prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.chrome.$npm_package_version.zip ./extension/*",
     "prod:firefox": "run-s build:firefox prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.firefox.$npm_package_version.zip ./extension/*",
     "release": "release-it",
+    "release:alpha": "release-it major --preRelease=alpha",
+    "release:beta": "release-it major --preRelease=beta",
     "prod": "run-s prod:chrome prod:firefox"
   },
   "devDependencies": {
