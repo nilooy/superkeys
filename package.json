@@ -2,7 +2,7 @@
   "name": "superkeys",
   "displayName": "SuperKeys",
   "description": "_THIS EXTENSION IS IN BETA_ Superkeys allow users to add short keys for websites and make search query in those sites.",
-  "version": "1.0.0-alpha.0",
+  "version": "0.0.9",
   "private": true,
   "scripts": {
     "start": "npm run dev:firefox",
