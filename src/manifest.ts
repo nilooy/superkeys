@@ -2,7 +2,7 @@ import pkg from "../package.json";
 import { isDev, port } from "../scripts/utils";
 
 // TODO: Add return typedef
-export async function getManifest(isFirefox: boolean = false) {
+export async function getManifest(isFirefoxInArg: boolean = false) {
   // update this file to update this manifest.json
   // can also be conditional based on your need
   const optionPath = "./dist/options/index.html";
@@ -19,7 +19,7 @@ export async function getManifest(isFirefox: boolean = false) {
   };
 
   const shortCut = {
-    [`_execute${isFirefox ? "_browser" : ""}_action`]: {
+    [`_execute${isFirefoxInArg ? "_browser" : ""}_action`]: {
       suggested_key: {
         windows: "Alt+Space",
         mac: "Alt+Space",
@@ -91,6 +91,6 @@ export async function getManifest(isFirefox: boolean = false) {
 
   return {
     ...common,
-    ...(isFirefox ? firefoxSpecific : chromeSpecific),
+    ...(isFirefoxInArg ? firefoxSpecific : chromeSpecific),
   };
 }

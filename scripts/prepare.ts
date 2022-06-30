@@ -2,7 +2,7 @@
 import fs from "fs-extra";
 import chokidar from "chokidar";
 import { getManifest } from "../src/manifest";
-import { r, port, isDev, log, isFirefox } from "./utils";
+import { r, port, isDev, log, isFirefoxInArg } from "./utils";
 
 /**
  * Stub index.html to use Vite in development
@@ -24,7 +24,8 @@ async function stubIndexHtml() {
 }
 
 export async function writeManifest() {
-  if (isDev && !isFirefox)
+  if (isDev && !isFirefoxInArg)
+    // Alert HMR
     log(
       "ALERT!",
       "Development in chrome doesn't support HMR, use Firefox instead"
@@ -32,21 +33,27 @@ export async function writeManifest() {
 
   await fs.writeJSON(
     r("extension/manifest.json"),
-    await getManifest(isFirefox),
-    { spaces: 2 }
+    await getManifest(isFirefoxInArg),
+    {
+      spaces: 2,
+    }
   );
   log("PRE", "write manifest.json");
 }
 
-writeManifest();
+// Initial Write
+writeManifest().then(() => log("PRE", "Manifest Created"));
 
 // HMR is supported only on manifest v2 (firefox), manifest v3 block external script with content security policy
-if (isDev && isFirefox) {
-  stubIndexHtml();
-  chokidar.watch(r("views/**/*.html")).on("change", () => {
-    stubIndexHtml();
-  });
+if (isDev) {
+  if (isFirefoxInArg)
+    // Run HMR for FIREFOX development env
+    chokidar.watch(r("views/**/*.html")).on("change", () => {
+      stubIndexHtml().then(() => log("PRE", "Html Updated"));
+    });
+
+  // Run for all development env
   chokidar.watch([r("src/manifest.ts"), r("package.json")]).on("change", () => {
-    writeManifest();
+    writeManifest().then(() => log("PRE", "Manifest Updated"));
   });
 }

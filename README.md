@@ -29,3 +29,5 @@ pnpm build
 ```
 
 And then pack files under `extension`.
+
+sub>Support this project by ⭐️ starring and sharing it. [Follow me](https://github.com/privatenumber) to see what other cool projects I'm working on! ❤️</sub>
