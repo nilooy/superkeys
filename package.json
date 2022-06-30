@@ -23,12 +23,16 @@
     "build:prepare": "esno scripts/prepare.ts build",
     "build:web": "vite build",
     "build:js": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
-    "prod": "run-s prod:chrome prod:firefox",
-    "prod:chrome": "run-s build:chrome && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/chrome",
-    "prod:firefox": "run-s build:firefox && cd extension && web-ext build --overwrite-dest --artifacts-dir=./releases/firefox",
-    "wait": "wait-on http://localhost:4173/options/index.html",
     "clear": "rimraf extension/dist extension/manifest.json",
-    "release": "release-it"
+    "wait": "wait-on http://localhost:4173/options/index.html",
+    "prod:command:divider::": "echo '@========> \uD83D\uDE80 PROD COMMANDS <========@'",
+    "prod:prepare": "mkdir -p releases/$npm_package_version",
+    "prod:chrome": "run-s build:chrome prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.chrome.$npm_package_version.zip ./extension/*",
+    "prod:firefox": "run-s build:firefox prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.firefox.$npm_package_version.zip ./extension/*",
+    "release": "release-it",
+    "postrelease": "npm run prod",
+    "prod": "run-s prod:chrome prod:firefox",
+    "postprod": "echo '@========> \uD83D\uDE80 PROD READY  <========@' $npm_package_version \uD83D\uDE80"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2",
