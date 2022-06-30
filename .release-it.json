@@ -3,6 +3,11 @@
     "release": true,
     "git": {
       "commitMessage": "chore: release v${version}"
+    },
+    "hooks": {
+      "after:bump": "npm run prod",
+      "after:git:release": "@=> \uD83D\uDE80 Upload the zip files from releases -> ${version} dir ",
+      "after:release": "echo @=> \uD83D\uDE80 Successfully released ${name} v${version} to ${repo.repository}."
     }
   }
 }
