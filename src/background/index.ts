@@ -21,7 +21,8 @@ browser.runtime.onInstalled.addListener(async () => {
   keyLists.forEach((keyItem, index) => {
     const indexKey = index + 1;
     browser.storage.sync
-      .set({ [indexKey]: { id: indexKey, ...keyItem } })
+      // @ts-ignore
+      .set({ [indexKey]: { id: indexKey, ...keyItem } }) // TODO: Test carefully.
       .then(() => browser.runtime.openOptionsPage());
 
     // context menu

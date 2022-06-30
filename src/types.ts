@@ -26,6 +26,8 @@ export interface ISuperKeyOptional {
   searchValue?: string;
   duplicate?: boolean;
   edited?: boolean;
+  title?: string;
+  type?: string;
 }
 
 export interface ISearchHandler {

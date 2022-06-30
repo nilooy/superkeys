@@ -2,6 +2,8 @@ import { DEFAULT_VALUES } from "./search-handler";
 import browser from "webextension-polyfill";
 import { FunctionComponent } from "preact";
 import { ISuperKeyOptional } from "../../types";
+import { listItemType, searchHelperText } from "./suggestions-item";
+import { getSearchType } from "./helpers";
 
 const style = {
   activeItem: "bg-gray-800 text-white",
@@ -40,7 +42,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
     : "";
 
   // No sub query found and matched with key with space, can trigger search query
-  const showSearchMessageUrl =
+  const showSearchMessageUrl: any =
     !filteredSuggestions.length && keyToFind?.queryUrl && keyToFind?.url;
 
   return (
@@ -69,8 +71,10 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
               }
               onClick={() => onSuggestionClick(value)}
             >
-              {value}
-              {showSearchMessageUrl ? `Search on ${showSearchMessageUrl}` : ""}
+              {searchHelperText[getSearchType(value)]?.(
+                showSearchMessageUrl,
+                value
+              )}
             </li>
           )}
           {filteredSuggestions.map((suggestion, i) => {
@@ -85,13 +89,15 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
               className = style.item;
             }
 
+            const ItemByType = listItemType[suggestion.type || "key"] || <></>;
+
             return (
               <li
                 className={className}
                 key={suggestion.key}
                 onClick={() => onSuggestionClick(suggestion)}
               >
-                {suggestion.key} {suggestion.url}
+                <ItemByType suggestion={suggestion} />
               </li>
             );
           })}

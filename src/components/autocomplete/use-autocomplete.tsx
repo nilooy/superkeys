@@ -3,6 +3,7 @@ import { DEFAULT_VALUES, fireSubmitAction } from "./search-handler";
 import browser from "webextension-polyfill";
 import { ISuperKeyOptional } from "../../types";
 import { ISuggestionsProps } from "./suggestions";
+import { isSearchingBookmarks, isSearchingHistory } from "./helpers";
 
 export const useAutocomplete = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -35,7 +36,7 @@ export const useAutocomplete = () => {
     });
   }, []);
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
 
   //close suggestions list when click outside
   useEffect(() => {
@@ -49,22 +50,73 @@ export const useAutocomplete = () => {
     return () => window.removeEventListener("click", handleOutsideClick);
   }, [showSuggestions, ref]);
 
+  const bookmarkSearch = browser.bookmarks.search;
+  const bookmarkRecent = browser.bookmarks.getRecent;
+  const browserHistorySearch = browser.history.search;
+
   const handleChange = useCallback(
-    (e: Event) => {
+    async (e: Event) => {
       const target = e.currentTarget as HTMLInputElement;
       const userInput = target.value;
-      const filteredSuggestions: ISuperKeyOptional[] = suggestions?.filter(
-        (suggestion: ISuperKeyOptional) =>
-          suggestion.key &&
-          suggestion.key.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-      );
+      let newFilteredSuggestions: ISuperKeyOptional[] = [];
+
+      if (isSearchingBookmarks(userInput)) {
+        const stringWithoutAtKeyword = userInput?.substring(1);
+        let bookmarkResult = [];
+
+        if (stringWithoutAtKeyword)
+          bookmarkResult = await bookmarkSearch(stringWithoutAtKeyword);
+        else bookmarkResult = await bookmarkRecent(10);
+
+        newFilteredSuggestions = bookmarkResult
+          .filter((each) => each.type === "bookmark")
+          .map((each) => {
+            return {
+              key: each.id,
+              url: each.url,
+              type: each.type,
+              title: each.title || "",
+            };
+          });
+      } else if (isSearchingHistory(userInput)) {
+        const stringWithoutHashKeyword = userInput?.substring(1);
+        const historyResult = await browserHistorySearch({
+          text: stringWithoutHashKeyword || " ",
+          maxResults: 20,
+        });
+
+        newFilteredSuggestions = historyResult
+          .sort((a, b) => (a.lastVisitTime || 0) - (b.lastVisitTime || 0))
+          .map((each) => {
+            return {
+              key: each.id,
+              url: each.url,
+              type: "history",
+              title: each.title || "",
+            };
+          });
+      } else
+        newFilteredSuggestions = suggestions
+          ?.filter(
+            (suggestion: ISuperKeyOptional) =>
+              suggestion.key &&
+              suggestion.key.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+          )
+          .map((each: ISuperKeyOptional) => ({ ...each, type: "key" }));
 
       setActiveSuggestion(0);
-      setFilteredSuggestions(filteredSuggestions);
+      setFilteredSuggestions(newFilteredSuggestions);
       setShowSuggestions(true);
-      setValue(target.value);
+      setValue(userInput);
     },
-    [setValue, suggestions]
+    [
+      setValue,
+      setFilteredSuggestions,
+      bookmarkSearch,
+      bookmarkRecent,
+      browserHistorySearch,
+      suggestions,
+    ]
   );
 
   const getByKey = (keyValue: string): ISuperKeyOptional | null => {

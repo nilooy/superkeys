@@ -82,6 +82,8 @@ export async function getManifest(isFirefox: boolean = false) {
       "contextMenus",
       "notifications",
       "activeTab",
+      "bookmarks",
+      "history",
     ],
 
     commands: shortCut,

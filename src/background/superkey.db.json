@@ -1,232 +1,432 @@
-[
-  {
-    "key": "gh",
-    "separator": "",
-    "url": "https://github.com",
-    "queryUrl": "https://github.com/search?q",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "pr", "url": "https://github.com/pulls" },
-      {
-        "key": "pr-need-review",
-        "url": "https://github.com/pulls/review-requested"
-      },
-      { "key": "pr-mentioned", "url": "https://github.com/pulls/mentioned" },
-      { "key": "pr-assigned", "url": "https://github.com/pulls/assigned" },
-      { "key": "issues", "url": "https://github.com/issues" },
-      { "key": "issues-assigned", "url": "https://github.com/issues/assigned" },
-      {
-        "key": "issues-mentioned",
-        "url": "https://github.com/issues/mentioned"
-      },
-      { "key": "marketplace", "url": "https://github.com/marketplace" },
-      { "key": "explore", "url": "https://github.com/explore" },
-      { "key": "trending", "url": "https://github.com/trending" },
-      { "key": "setting", "url": "https://github.com/settings/profile" },
-      { "key": "gist", "url": "https://gist.github.com/discover" },
-      { "key": "notifications", "url": "https://github.com/notifications" }
-    ],
-    "id": 1
-  },
-  {
-    "key": "so",
-    "separator": "",
-    "url": "https://stackoverflow.com",
-    "queryUrl": "https://stackoverflow.com/search?q",
-    "querySeparator": "",
-    "subKeys": [],
-    "id": 2
-  },
-  {
-    "key": "twt",
-    "separator": "",
-    "url": "https://twitter.com",
-    "queryUrl": "https://twitter.com/search?",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "new", "url": "https://twitter.com/compose/tweet" },
-      { "key": "bookmarks", "url": "https://twitter.com/i/bookmarks" },
-      { "key": "messages", "url": "https://twitter.com/messages" },
-      { "key": "notifications", "url": "https://twitter.com/notifications" },
-      { "key": "explore", "url": "https://twitter.com/explore" },
-      { "key": "elon", "url": "https://twitter.com/elonmusk" },
-      { "key": "dabit", "url": "https://twitter.com/dabit3" },
-      { "key": "binance", "url": "https://twitter.com/binance" },
-      { "key": "fireship", "url": "https://twitter.com/fireship_dev" },
-      { "key": "", "url": "" }
-    ],
-    "id": 3
-  },
-  {
-    "key": "jobs",
-    "separator": "",
-    "url": "https://www.linkedin.com/jobs",
-    "queryUrl": "https://www.linkedin.com/jobs/search/?keywords",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "flexjobs", "url": "https://www.flexjobs.com/" },
-      { "key": "indeed", "url": "https://indeed.com" },
-      { "key": "arc", "url": "https://arc.dev/remote-jobs" },
-      { "key": "remote.co", "url": "https://remote.co" },
-      {
-        "key": "google",
-        "url": "https://www.google.com/search?q=jobs&ibp=htl;jobs"
-      },
-      { "key": "justremote", "url": "https://justremote.co/" },
-      { "key": "weworkremotely", "url": "https://weworkremotely.com/" },
-      { "key": "remotive", "url": "https://remotive.com/" },
-      { "key": "remoteok", "url": "https://remoteok.com/" },
-      { "key": "glassdoor", "url": "https://www.glassdoor.com" },
-      { "key": "monster", "url": "https://www.monster.com/" }
-    ],
-    "id": 4
-  },
-  {
-    "key": "qr",
-    "separator": "",
-    "url": "https://www.quora.com",
-    "queryUrl": "https://www.quora.com/search?q",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "notifications", "url": "https://www.quora.com/notifications" },
-      { "key": "following", "url": "https://www.quora.com/following" },
-      { "key": "answer", "url": "https://www.quora.com/answer" },
-      { "key": "bookmarks", "url": "https://www.quora.com/bookmarks" },
-      { "key": "space", "url": "https://www.quora.com/spaces?discover=true" }
-    ],
-    "id": 5
-  },
-  {
-    "key": "rd",
-    "separator": "",
-    "url": "https://www.reddit.com/",
-    "queryUrl": "https://www.reddit.com/search/?q",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "create", "url": "https://www.reddit.com/submit" },
-      { "key": "hot", "url": "https://www.reddit.com/hot/" },
-      { "key": "new", "url": "https://www.reddit.com/new/" },
-      { "key": "top", "url": "https://www.reddit.com/top/" },
-      { "key": "chat", "url": "https://www.reddit.com/chat/" },
-      { "key": "live", "url": "https://www.reddit.com/rpan/" },
-      { "key": "popular", "url": "https://www.reddit.com/r/popular/" },
-      { "key": "all", "url": "https://www.reddit.com/r/all/" }
-    ],
-    "id": 6
-  },
-  {
-    "key": "cd",
-    "separator": "",
-    "url": "https://www.codegrepper.com/",
-    "queryUrl": "https://www.codegrepper.com/search.php?q",
-    "querySeparator": "",
-    "subKeys": [{ "key": "", "url": "" }],
-    "id": 7
-  },
-  {
-    "key": "yt",
-    "separator": "",
-    "url": "https://www.youtube.com",
-    "queryUrl": "https://www.youtube.com/results?search_query",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "history", "url": "https://www.youtube.com/feed/history" },
-      { "key": "gaming", "url": "https://www.youtube.com/gaming" },
-      { "key": "live", "url": "https://www.youtube.com/live/featured" },
-      { "key": "music", "url": "https://music.youtube.com/tasteprofile" },
-      { "key": "artist", "url": "https://artists.youtube/" },
-      { "key": "account", "url": "https://www.youtube.com/account" },
-      { "key": "premium", "url": "https://www.youtube.com/premium" }
-    ],
-    "id": 8
-  },
-  {
-    "key": "daily.dev",
-    "separator": "",
-    "url": "https://app.daily.dev/",
-    "queryUrl": "https://app.daily.dev/search?q",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "popular", "url": "https://app.daily.dev/popular" },
-      { "key": "upvoted", "url": "https://app.daily.dev/upvoted" },
-      { "key": "bookmarks", "url": "https://app.daily.dev/bookmarks" },
-      { "key": "discussed", "url": "https://app.daily.dev/discussed" }
-    ],
-    "id": 9
-  },
-  {
-    "key": "az",
-    "separator": "",
-    "url": "https://www.amazon.com",
-    "queryUrl": "https://www.amazon.com/s?k",
-    "querySeparator": "",
-    "subKeys": [{ "key": "", "url": "" }],
-    "id": 10
-  },
-  {
-    "key": "whatsapp",
-    "separator": "",
-    "url": "https://web.whatsapp.com/",
-    "queryUrl": "",
-    "querySeparator": "",
-    "subKeys": [],
-    "id": 11,
-    "duplicate": false,
-    "edited": false
-  },
-  {
-    "key": "gm",
-    "separator": "",
-    "url": "https://mail.google.com",
-    "queryUrl": "https://mail.google.com/mail/u/0/#search/",
-    "querySeparator": "",
-    "subKeys": [
-      { "key": "2", "url": "https://mail.google.com/mail/u/1" },
-      { "key": "3", "url": "https://mail.google.com/mail/u/3" }
-    ],
-    "id": 12
-  },
-  {
-    "key": "meet",
-    "separator": "",
-    "url": "https://meet.google.com",
-    "queryUrl": "https://meet.google.com/?authuser",
-    "querySeparator": "",
-    "subKeys": [{ "key": "new", "url": "https://meet.google.com/new" }],
-    "id": 13
-  },
-  {
-    "key": "cryp",
-    "separator": "",
-    "url": "https://crypto.com/price",
-    "queryUrl": "https://www.coindesk.com/search?s",
-    "querySeparator": "",
-    "subKeys": [
-      {
-        "key": "news",
-        "url": "https://decrypt.co/?utm_source=cmc&utm_medium=cpc&utm_campaign=search"
-      },
-      { "key": "btc", "url": "https://coinmarketcap.com/currencies/bitcoin/" },
-      { "key": "eth", "url": "https://coinmarketcap.com/currencies/ethereum/" },
-      {
-        "key": "dogecoin",
-        "url": "https://coinmarketcap.com/currencies/dogecoin/"
-      },
-      {
-        "key": "shiba",
-        "url": "https://coinmarketcap.com/currencies/shiba-inu/"
-      },
-      {
-        "key": "solana",
-        "url": "https://coinmarketcap.com/currencies/solana/"
-      },
-      { "key": "bnb", "url": "https://coinmarketcap.com/currencies/bnb/" },
-      {
-        "key": "litecoin",
-        "url": "https://coinmarketcap.com/currencies/litecoin/"
-      },
-      { "key": "tezos", "url": "https://coinmarketcap.com/currencies/tezos/" }
-    ],
-    "id": 14
-  }
-]
+{
+  "keyLists": [
+    {
+      "key": "gh",
+      "separator": "",
+      "url": "https://github.com",
+      "queryUrl": "https://github.com/search?q",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "pr",
+          "url": "https://github.com/pulls"
+        },
+        {
+          "key": "pr-need-review",
+          "url": "https://github.com/pulls/review-requested"
+        },
+        {
+          "key": "pr-mentioned",
+          "url": "https://github.com/pulls/mentioned"
+        },
+        {
+          "key": "pr-assigned",
+          "url": "https://github.com/pulls/assigned"
+        },
+        {
+          "key": "issues",
+          "url": "https://github.com/issues"
+        },
+        {
+          "key": "issues-assigned",
+          "url": "https://github.com/issues/assigned"
+        },
+        {
+          "key": "issues-mentioned",
+          "url": "https://github.com/issues/mentioned"
+        },
+        {
+          "key": "marketplace",
+          "url": "https://github.com/marketplace"
+        },
+        {
+          "key": "explore",
+          "url": "https://github.com/explore"
+        },
+        {
+          "key": "trending",
+          "url": "https://github.com/trending"
+        },
+        {
+          "key": "setting",
+          "url": "https://github.com/settings/profile"
+        },
+        {
+          "key": "gist",
+          "url": "https://gist.github.com/discover"
+        },
+        {
+          "key": "notifications",
+          "url": "https://github.com/notifications"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "key": "so",
+      "separator": "",
+      "url": "https://stackoverflow.com",
+      "queryUrl": "https://stackoverflow.com/search?q",
+      "querySeparator": "",
+      "subKeys": [],
+      "id": 2
+    },
+    {
+      "key": "twt",
+      "separator": "",
+      "url": "https://twitter.com",
+      "queryUrl": "https://twitter.com/search?",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "new",
+          "url": "https://twitter.com/compose/tweet"
+        },
+        {
+          "key": "bookmarks",
+          "url": "https://twitter.com/i/bookmarks"
+        },
+        {
+          "key": "messages",
+          "url": "https://twitter.com/messages"
+        },
+        {
+          "key": "notifications",
+          "url": "https://twitter.com/notifications"
+        },
+        {
+          "key": "explore",
+          "url": "https://twitter.com/explore"
+        },
+        {
+          "key": "elon",
+          "url": "https://twitter.com/elonmusk"
+        },
+        {
+          "key": "dabit",
+          "url": "https://twitter.com/dabit3"
+        },
+        {
+          "key": "binance",
+          "url": "https://twitter.com/binance"
+        },
+        {
+          "key": "fireship",
+          "url": "https://twitter.com/fireship_dev"
+        },
+        {
+          "key": "",
+          "url": ""
+        }
+      ],
+      "id": 3
+    },
+    {
+      "key": "jobs",
+      "separator": "",
+      "url": "https://www.linkedin.com/jobs",
+      "queryUrl": "https://www.linkedin.com/jobs/search/?keywords",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "flexjobs",
+          "url": "https://www.flexjobs.com/"
+        },
+        {
+          "key": "indeed",
+          "url": "https://indeed.com"
+        },
+        {
+          "key": "arc",
+          "url": "https://arc.dev/remote-jobs"
+        },
+        {
+          "key": "remote.co",
+          "url": "https://remote.co"
+        },
+        {
+          "key": "google",
+          "url": "https://www.google.com/search?q=jobs&ibp=htl;jobs"
+        },
+        {
+          "key": "justremote",
+          "url": "https://justremote.co/"
+        },
+        {
+          "key": "weworkremotely",
+          "url": "https://weworkremotely.com/"
+        },
+        {
+          "key": "remotive",
+          "url": "https://remotive.com/"
+        },
+        {
+          "key": "remoteok",
+          "url": "https://remoteok.com/"
+        },
+        {
+          "key": "glassdoor",
+          "url": "https://www.glassdoor.com"
+        },
+        {
+          "key": "monster",
+          "url": "https://www.monster.com/"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "key": "qr",
+      "separator": "",
+      "url": "https://www.quora.com",
+      "queryUrl": "https://www.quora.com/search?q",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "notifications",
+          "url": "https://www.quora.com/notifications"
+        },
+        {
+          "key": "following",
+          "url": "https://www.quora.com/following"
+        },
+        {
+          "key": "answer",
+          "url": "https://www.quora.com/answer"
+        },
+        {
+          "key": "bookmarks",
+          "url": "https://www.quora.com/bookmarks"
+        },
+        {
+          "key": "space",
+          "url": "https://www.quora.com/spaces?discover=true"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "key": "rd",
+      "separator": "",
+      "url": "https://www.reddit.com/",
+      "queryUrl": "https://www.reddit.com/search/?q",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "create",
+          "url": "https://www.reddit.com/submit"
+        },
+        {
+          "key": "hot",
+          "url": "https://www.reddit.com/hot/"
+        },
+        {
+          "key": "new",
+          "url": "https://www.reddit.com/new/"
+        },
+        {
+          "key": "top",
+          "url": "https://www.reddit.com/top/"
+        },
+        {
+          "key": "chat",
+          "url": "https://www.reddit.com/chat/"
+        },
+        {
+          "key": "live",
+          "url": "https://www.reddit.com/rpan/"
+        },
+        {
+          "key": "popular",
+          "url": "https://www.reddit.com/r/popular/"
+        },
+        {
+          "key": "all",
+          "url": "https://www.reddit.com/r/all/"
+        }
+      ],
+      "id": 6
+    },
+    {
+      "key": "cd",
+      "separator": "",
+      "url": "https://www.codegrepper.com/",
+      "queryUrl": "https://www.codegrepper.com/search.php?q",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "",
+          "url": ""
+        }
+      ],
+      "id": 7
+    },
+    {
+      "key": "yt",
+      "separator": "",
+      "url": "https://www.youtube.com",
+      "queryUrl": "https://www.youtube.com/results?search_query",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "history",
+          "url": "https://www.youtube.com/feed/history"
+        },
+        {
+          "key": "gaming",
+          "url": "https://www.youtube.com/gaming"
+        },
+        {
+          "key": "live",
+          "url": "https://www.youtube.com/live/featured"
+        },
+        {
+          "key": "music",
+          "url": "https://music.youtube.com/tasteprofile"
+        },
+        {
+          "key": "artist",
+          "url": "https://artists.youtube/"
+        },
+        {
+          "key": "account",
+          "url": "https://www.youtube.com/account"
+        },
+        {
+          "key": "premium",
+          "url": "https://www.youtube.com/premium"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "key": "daily.dev",
+      "separator": "",
+      "url": "https://app.daily.dev/",
+      "queryUrl": "https://app.daily.dev/search?q",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "popular",
+          "url": "https://app.daily.dev/popular"
+        },
+        {
+          "key": "upvoted",
+          "url": "https://app.daily.dev/upvoted"
+        },
+        {
+          "key": "bookmarks",
+          "url": "https://app.daily.dev/bookmarks"
+        },
+        {
+          "key": "discussed",
+          "url": "https://app.daily.dev/discussed"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "key": "az",
+      "separator": "",
+      "url": "https://www.amazon.com",
+      "queryUrl": "https://www.amazon.com/s?k",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "",
+          "url": ""
+        }
+      ],
+      "id": 10
+    },
+    {
+      "key": "whatsapp",
+      "separator": "",
+      "url": "https://web.whatsapp.com/",
+      "queryUrl": "",
+      "querySeparator": "",
+      "subKeys": [],
+      "id": 11,
+      "duplicate": false,
+      "edited": false
+    },
+    {
+      "key": "gm",
+      "separator": "",
+      "url": "https://mail.google.com",
+      "queryUrl": "https://mail.google.com/mail/u/0/#search/",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "2",
+          "url": "https://mail.google.com/mail/u/1"
+        },
+        {
+          "key": "3",
+          "url": "https://mail.google.com/mail/u/3"
+        }
+      ],
+      "id": 12
+    },
+    {
+      "key": "meet",
+      "separator": "",
+      "url": "https://meet.google.com",
+      "queryUrl": "https://meet.google.com/?authuser",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "new",
+          "url": "https://meet.google.com/new"
+        }
+      ],
+      "id": 13
+    },
+    {
+      "key": "cryp",
+      "separator": "",
+      "url": "https://crypto.com/price",
+      "queryUrl": "https://www.coindesk.com/search?s",
+      "querySeparator": "",
+      "subKeys": [
+        {
+          "key": "news",
+          "url": "https://decrypt.co/?utm_source=cmc&utm_medium=cpc&utm_campaign=search"
+        },
+        {
+          "key": "btc",
+          "url": "https://coinmarketcap.com/currencies/bitcoin/"
+        },
+        {
+          "key": "eth",
+          "url": "https://coinmarketcap.com/currencies/ethereum/"
+        },
+        {
+          "key": "dogecoin",
+          "url": "https://coinmarketcap.com/currencies/dogecoin/"
+        },
+        {
+          "key": "shiba",
+          "url": "https://coinmarketcap.com/currencies/shiba-inu/"
+        },
+        {
+          "key": "solana",
+          "url": "https://coinmarketcap.com/currencies/solana/"
+        },
+        {
+          "key": "bnb",
+          "url": "https://coinmarketcap.com/currencies/bnb/"
+        },
+        {
+          "key": "litecoin",
+          "url": "https://coinmarketcap.com/currencies/litecoin/"
+        },
+        {
+          "key": "tezos",
+          "url": "https://coinmarketcap.com/currencies/tezos/"
+        }
+      ],
+      "id": 14
+    }
+  ]
+}
