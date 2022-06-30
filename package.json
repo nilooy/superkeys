@@ -2,7 +2,7 @@
   "name": "superkeys",
   "displayName": "SuperKeys",
   "description": "_THIS EXTENSION IS IN BETA_ Superkeys allow users to add short keys for websites and make search query in those sites.",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "private": true,
   "scripts": {
     "start": "npm run dev:firefox",
@@ -25,14 +25,14 @@
     "build:js": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
     "clear": "rimraf extension/dist extension/manifest.json",
     "wait": "wait-on http://localhost:4173/options/index.html",
-    "prod:command:divider::": "echo '@========> \uD83D\uDE80 PROD COMMANDS <========@'",
+    "prod:command:divider::": "echo '@========> 🚀 PROD COMMANDS <========@'",
     "prod:prepare": "mkdir -p releases/$npm_package_version",
     "prod:chrome": "run-s build:chrome prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.chrome.$npm_package_version.zip ./extension/*",
     "prod:firefox": "run-s build:firefox prod:prepare && tar czfv ./releases/$npm_package_version/superkeys.firefox.$npm_package_version.zip ./extension/*",
     "release": "release-it",
     "postrelease": "npm run prod",
     "prod": "run-s prod:chrome prod:firefox",
-    "postprod": "echo '@========> \uD83D\uDE80 PROD READY  <========@' $npm_package_version \uD83D\uDE80"
+    "postprod": "echo '@========> 🚀 PROD READY  <========@' $npm_package_version 🚀"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2",
