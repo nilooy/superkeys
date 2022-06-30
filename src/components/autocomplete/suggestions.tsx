@@ -32,9 +32,6 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
 }) => {
   if (!showSuggestions || !value) return null;
 
-  // TODO: remove duplicate codes: ref: `getByKey` function
-  const showTypedValue = filteredSuggestions?.[0]?.key !== value;
-
   const keyFromValue = value.split(DEFAULT_VALUES.separator)?.[0];
   const keyToFind = suggestions.find((item) => item?.key === keyFromValue);
   const searchValue = keyToFind
@@ -44,6 +41,13 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
   // No sub query found and matched with key with space, can trigger search query
   const showSearchMessageUrl: any =
     !filteredSuggestions.length && keyToFind?.queryUrl && keyToFind?.url;
+
+  const searchType = getSearchType(value);
+
+  const helperText = searchHelperText[searchType]?.(
+    showSearchMessageUrl,
+    value
+  );
 
   return (
     <div>
@@ -62,7 +66,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
       )}
       {filteredSuggestions.length ? (
         <ul className={style.list}>
-          {showTypedValue && (
+          {!!helperText && (
             <li
               className={
                 activeSuggestion === 0
@@ -71,10 +75,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
               }
               onClick={() => onSuggestionClick(value)}
             >
-              {searchHelperText[getSearchType(value)]?.(
-                showSearchMessageUrl,
-                value
-              )}
+              {helperText}
             </li>
           )}
           {filteredSuggestions.map((suggestion, i) => {
@@ -104,7 +105,9 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
         </ul>
       ) : (
         <div className="text-sm text-gray-500 p-4">
-          <em>No suggestions available! </em>
+          <em>
+            No {searchType === "key" ? "suggestion" : searchType} available!{" "}
+          </em>
           <span
             className="ml-2 badge badge-accent badge-outline text-xs cursor-pointer hover:bg-accent hover:text-gray-100 hover:border-none"
             onClick={() =>

@@ -42,5 +42,5 @@ export const searchHelperText = {
     </>
   ),
   key: (showSearchMessageUrl: any, value: string) =>
-    `${value} Search on ${showSearchMessageUrl}`,
+    !!showSearchMessageUrl && `${value} Search on ${showSearchMessageUrl}`,
 };
