@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "before:git": ["npm run prod", "git add ."]
+    "after:bump": ["npm run prod", "git add .", "git commit -m ':rocket: Add release files'"]
   },
   "github": {
     "release": true,
