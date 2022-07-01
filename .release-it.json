@@ -1,8 +1,6 @@
 {
   "hooks": {
-    "after:bump": "npm run prod",
-    "after:git:release": "echo @=> \uD83D\uDE80 Upload the zip files from releases -> ${version} dir ",
-    "after:release": "echo @=> \uD83D\uDE80 Successfully released ${name} v${version} to ${repo.repository}."
+    "before:git": ["npm run prod", "git add ."]
   },
   "github": {
     "release": true,
