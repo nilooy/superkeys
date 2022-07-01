@@ -1,7 +1,7 @@
 {
   "name": "superkeys",
   "displayName": "SuperKeys",
-  "description": "_THIS EXTENSION IS IN BETA_ Superkeys allow users to add short keys for websites and make search query in those sites.",
+  "description": "_THIS EXTENSION IS IN ALPHA_ Superkeys allow users to add short keys for websites and make search query in those sites.",
   "version": "0.0.9",
   "private": true,
   "scripts": {
