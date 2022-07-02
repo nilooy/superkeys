@@ -1,6 +1,11 @@
-# Superkeys
+<div align="center">
+    <img src="extension/assets/img/logo128.png" alt="Meteor Devtool Evolved Gif" />
+    <h2>SuperKeys</h2>
+    <h4 color="yellow">Superkeys allow users to add short keys for websites and make search query in those sites.</h4>
+    <p>_THIS EXTENSION IS IN ALPHA_</p>
+</div>
 
-_THIS EXTENSION IS IN BETA_ Superkeys allow users to add short keys for websites and make search query in those sites.
+ 
 
 ## Usage
 
