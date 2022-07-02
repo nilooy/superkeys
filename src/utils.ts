@@ -1,20 +1,20 @@
-import { ISuperKeyOptional } from "./types";
-import browser from "webextension-polyfill";
+import { ISuperKeyOptional } from './types'
+import browser from 'webextension-polyfill'
 
 export const getAutoIncId = (
-  array: ISuperKeyOptional[],
-  count?: number
+    array: ISuperKeyOptional[],
+    count?: number,
 ): number => {
-  let id = count || array.length;
+    const id = count || array.length
 
-  if (!!array.find((item) => item.id === id)) {
-    return getAutoIncId(array, id + 1);
-  }
+    if (array.find(item => item.id === id)) {
+        return getAutoIncId(array, id + 1)
+    }
 
-  return id || 1; // zero not allowed as id
-};
+    return id || 1 // zero not allowed as id
+}
 
 export const checkFirefoxBrowser = async (): Promise<boolean> => {
-  const { name } = (await browser.runtime.getBrowserInfo?.()) || {};
-  return name === "Firefox";
-};
+    const { name } = (await browser.runtime.getBrowserInfo?.()) || {}
+    return name === 'Firefox'
+}
