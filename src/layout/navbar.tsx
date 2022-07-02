@@ -12,12 +12,9 @@ const Navbar = () => {
         </a>
       </div>
       <div className="flex-none gap-2">
-        <label
-          htmlFor="hint_modal"
-          className="btn btn-outline modal-button ml-12"
-        >
+        <a href="#hint_modal" className="btn btn-outline modal-button ml-12">
           Hints
-        </label>
+        </a>
         <a className="btn" href="#">
           Key Lists
         </a>
