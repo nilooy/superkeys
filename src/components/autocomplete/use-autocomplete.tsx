@@ -57,7 +57,7 @@ export const useAutocomplete = () => {
   const handleChange = useCallback(
     async (e: Event) => {
       const target = e.currentTarget as HTMLInputElement;
-      const userInput = target.value;
+      const userInput = target.value?.toLowerCase();
       let newFilteredSuggestions: ISuperKeyOptional[] = [];
 
       if (isSearchingBookmarks(userInput)) {
