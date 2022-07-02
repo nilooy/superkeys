@@ -9,7 +9,7 @@
     "dev:chrome": "run-p chrome:*",
     "dev:firefox": "run-p firefox:*",
     "chrome:prepare": "esno scripts/prepare.ts build --watch",
-    "chrome:watch": "vite",
+    "chrome:watch": "vite build --watch",
     "chrome:preview": "vite preview",
     "chrome:build": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
     "chrome:open": "npm run wait && web-ext run -t chromium --start-url \"https://stackoverflow.com\" --source-dir ./extension/",

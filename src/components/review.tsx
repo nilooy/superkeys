@@ -1,6 +1,7 @@
 import { CHROME_STORE_URL, FIREFOX_STORE_URL } from "../constants";
 import { Icon } from "@iconify/react";
 import { useFirefox } from "./useFirefox";
+import browser from "webextension-polyfill";
 
 const Review = () => {
   const { isFirefox } = useFirefox();
@@ -11,7 +12,11 @@ const Review = () => {
         <a
           target="_blank"
           className="ml-2 flex items-center"
-          href={isFirefox ? FIREFOX_STORE_URL : CHROME_STORE_URL}
+          href={
+            isFirefox
+              ? FIREFOX_STORE_URL
+              : CHROME_STORE_URL + browser.runtime.id
+          }
         >
           <span>⭐️ Please leave us a review on</span>
           <Icon

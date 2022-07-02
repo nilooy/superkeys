@@ -6,12 +6,18 @@ import Review from "./review";
 import Social from "./social";
 import { useFirefox } from "./useFirefox";
 import { CHROME_SHORTCUT_GUIDE, FIREFOX_SHORTCUT_GUIDE } from "../constants";
+import { useEffect } from "preact/compat";
+import browser from "webextension-polyfill";
 
 const Hints: FunctionComponent = () => {
   const { mainCommand } = useCommand();
   const { isFirefox } = useFirefox();
 
   const guideUrl = isFirefox ? FIREFOX_SHORTCUT_GUIDE : CHROME_SHORTCUT_GUIDE;
+
+  useEffect(() => {
+    console.log({ sss: browser.runtime.id });
+  }, []);
 
   return (
     <div>
@@ -22,7 +28,7 @@ const Hints: FunctionComponent = () => {
           "--tw-bg-opacity": "0.8",
         }}
       >
-        <div className="modal-box relative">
+        <div className="modal-box relative bg-black">
           <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
           </a>
@@ -36,16 +42,22 @@ const Hints: FunctionComponent = () => {
               <Shortcuts command={mainCommand} />{" "}
             </li>{" "}
             <li>
-              <a
-                target="_blank"
-                href={guideUrl}
-                rel="noreferrer"
+              <span
+                onClick={() =>
+                  isFirefox
+                    ? window.open(guideUrl)
+                    : browser.tabs.create({
+                        url: guideUrl,
+                      })
+                }
                 className="link link-accent"
               >
                 <em className="text-[12px]">
-                  Follow this guide to change browser shortcuts
+                  {isFirefox
+                    ? "Follow this guide to change browser shortcuts"
+                    : "Change browser shortcut"}
                 </em>
-              </a>
+              </span>
             </li>
             <div className="divider"></div>
             <li class="flex justify-between items-center my-2">
