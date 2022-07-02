@@ -3,57 +3,59 @@
 @tailwind utilities;
 
 input {
-    border: 1px solid #999;
-    padding: 0.5rem;
-    width: 300px;
+ border: 1px solid #999;
+ padding: 0.5rem;
+ width: 300px;
 }
 .no-suggestions {
-    color: #999;
-    padding: 0.5rem;
+ color: #999;
+ padding: 0.5rem;
 }
 .suggestions {
-    border: 1px solid #999;
-    border-top-width: 0;
-    list-style: none;
-    margin-top: 0;
-    max-height: 143px;
-    overflow-y: auto;
-    padding-left: 0;
-    width: calc(300px + 1rem);
+ border: 1px solid #999;
+ border-top-width: 0;
+ list-style: none;
+ margin-top: 0;
+ max-height: 143px;
+ overflow-y: auto;
+ padding-left: 0;
+ width: calc(300px + 1rem);
 }
 .suggestions li {
-    padding: 0.5rem;
+ padding: 0.5rem;
 }
 .suggestion-active,
 .suggestions li:hover {
-    background-color: #008f68;
-    color: #fae042;
-    cursor: pointer;
-    font-weight: 700;
+ background-color: #008f68;
+ color: #fae042;
+ cursor: pointer;
+ font-weight: 700;
 }
 .suggestions li:not(:last-of-type) {
-    border-bottom: 1px solid #999;
+ border-bottom: 1px solid #999;
 }
-
 
 /* bg */
 
 .bg-dot {
-    background-image: radial-gradient(hsla(var(--bc)/.2) 0.5px,hsla(var(--b2)/1) 0.5px);
+ background-image: radial-gradient(
+  hsla(var(--bc) / 0.2) 0.5px,
+  hsla(var(--b2) / 1) 0.5px
+ );
 }
 
-:root{
-    /*@apply bg-base-300*/
-    background-color: #000000;
-    opacity: .9;
-    background-image: radial-gradient(#2c2c2f 1px, #000000 1px);
-    background-size: 40px 40px;
+:root {
+ /*@apply bg-base-300*/
+ background-color: #000000;
+ opacity: 0.9;
+ background-image: radial-gradient(#2c2c2f 1px, #000000 1px);
+ background-size: 40px 40px;
 }
 
-.file-uploader-container svg{
-    display: none;
+.file-uploader-container svg {
+ display: none;
 }
 
-.file-uploader-container label{
-    @apply mt-2 p-10
+.file-uploader-container label {
+ @apply mt-2 p-10;
 }

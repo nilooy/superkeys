@@ -1,71 +1,71 @@
-import browser from "webextension-polyfill";
-import { ISearchHandler } from "../../types";
-import { checkFirefoxBrowser } from "../../utils";
+import browser from 'webextension-polyfill'
+import { ISearchHandler } from '../../types'
+import { checkFirefoxBrowser } from '../../utils'
 
 export const DEFAULT_VALUES: {
-  separator: string;
-  querySeparator: string;
+ separator: string
+ querySeparator: string
 } = {
-  separator: " ",
-  querySeparator: "-",
-};
+ separator: ' ',
+ querySeparator: '-',
+}
 
 const isValidUrl = (urlString: string) => {
-  let url;
+ let url
 
-  try {
-    url = new URL(urlString);
-  } catch (_) {
-    return false;
-  }
+ try {
+  url = new URL(urlString)
+ } catch (_) {
+  return false
+ }
 
-  return ["https:", "http:", "chrome:", "file:"].includes(url.protocol);
-};
+ return ['https:', 'http:', 'chrome:', 'file:'].includes(url.protocol)
+}
 
 export const buildSearchUrl = ({ keyItem, value }: ISearchHandler) => {
-  const { queryUrl, subKeys = [], searchValue } = keyItem || {};
+ const { queryUrl, subKeys = [], searchValue } = keyItem || {}
 
-  // Handle when no search query url and no subKeys is found
-  if (keyItem?.url && !queryUrl && !subKeys.length) return keyItem.url;
-  // just to make it less complex
-  if (queryUrl && !searchValue) return keyItem?.url;
+ // Handle when no search query url and no subKeys is found
+ if (keyItem?.url && !queryUrl && !subKeys.length) return keyItem.url
+ // just to make it less complex
+ if (queryUrl && !searchValue) return keyItem?.url
 
-  // Check if sub-keys match with keywords
-  const findSubKey = subKeys.find((subKey) => subKey?.key === searchValue);
-  if (findSubKey) return findSubKey.url;
+ // Check if sub-keys match with keywords
+ const findSubKey = subKeys.find(subKey => subKey?.key === searchValue)
+ if (findSubKey) return findSubKey.url
 
-  if (queryUrl && searchValue) return `${queryUrl}=${encodeURI(searchValue)}`;
+ if (queryUrl && searchValue) return `${queryUrl}=${encodeURI(searchValue)}`
 
-  return value;
-};
+ return value
+}
 
 export const fireSubmitAction = async ({
-  keyItem,
-  value = "",
+ keyItem,
+ value = '',
 }: ISearchHandler) => {
-  const searchUrl = buildSearchUrl({ keyItem, value });
+ const searchUrl = buildSearchUrl({ keyItem, value })
 
-  if (!searchUrl) return;
+ if (!searchUrl) return
 
-  if (isValidUrl(searchUrl))
-    browser.tabs.create({
-      url: searchUrl,
-    });
-  else {
-    const isFirefoxBrowser: boolean = await checkFirefoxBrowser();
-    const browserSearchMethod: any = isFirefoxBrowser
-      ? browser.search?.search
-      : chrome.search.query; // chrome => global
-    const searchParams = isFirefoxBrowser
-      ? {
-          query: searchUrl,
-        }
-      : {
-          text: searchUrl,
-          disposition: "NEW_TAB",
-        };
+ if (isValidUrl(searchUrl))
+  browser.tabs.create({
+   url: searchUrl,
+  })
+ else {
+  const isFirefoxBrowser: boolean = await checkFirefoxBrowser()
+  const browserSearchMethod: any = isFirefoxBrowser
+   ? browser.search?.search
+   : chrome.search.query // chrome => global
+  const searchParams = isFirefoxBrowser
+   ? {
+      query: searchUrl,
+     }
+   : {
+      text: searchUrl,
+      disposition: 'NEW_TAB',
+     }
 
-    browserSearchMethod(searchParams);
-  }
-  window.close();
-};
+  browserSearchMethod(searchParams)
+ }
+ window.close()
+}

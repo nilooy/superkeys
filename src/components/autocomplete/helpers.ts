@@ -1,16 +1,16 @@
 export const FIXED_KEYWORDS: { [index: string]: string } = {
-  BOOKMARK: "@",
-  HISTORY: "#",
-};
+ BOOKMARK: '@',
+ HISTORY: '#',
+}
 
 export const isSearchingHistory = (input: string) =>
-  input[0] === FIXED_KEYWORDS.HISTORY;
+ input[0] === FIXED_KEYWORDS.HISTORY
 export const isSearchingBookmarks = (input: string) =>
-  input[0] === FIXED_KEYWORDS.BOOKMARK;
+ input[0] === FIXED_KEYWORDS.BOOKMARK
 
 export const getSearchType = (input: string) => {
-  if (isSearchingHistory(input)) return "history";
-  if (isSearchingBookmarks(input)) return "bookmark";
+ if (isSearchingHistory(input)) return 'history'
+ if (isSearchingBookmarks(input)) return 'bookmark'
 
-  return "key";
-};
+ return 'key'
+}

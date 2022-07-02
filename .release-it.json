@@ -1,14 +1,18 @@
 {
-  "hooks": {
-    "after:bump": ["npm run prod", "git add .", "git commit -m ':rocket: Add release files v${version}'"]
-  },
-  "github": {
-    "release": true,
-    "git": {
-      "commitMessage": "chore: release v${version}"
-    }
-  },
-  "npm": {
-    "publish": false
+ "hooks": {
+  "after:bump": [
+   "npm run prod",
+   "git add .",
+   "git commit -m ':rocket: Add release files v${version}'"
+  ]
+ },
+ "github": {
+  "release": true,
+  "git": {
+   "commitMessage": "chore: release v${version}"
   }
+ },
+ "npm": {
+  "publish": false
+ }
 }

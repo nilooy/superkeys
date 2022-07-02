@@ -5,8 +5,6 @@
     <p>_THIS EXTENSION IS IN ALPHA_</p>
 </div>
 
- 
-
 ## Usage
 
 ### Folders

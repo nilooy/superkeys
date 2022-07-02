@@ -11,6 +11,6 @@ export const isFirefox = !!process.env.FIREFOX
 export const isFirefoxInArg: boolean = process.argv.includes('--firefox')
 
 export function log(name: string, message: string) {
-    // eslint-disable-next-line no-console
-    console.log(black(bgCyan(` ${name} `)), message)
+ // eslint-disable-next-line no-console
+ console.log(black(bgCyan(` ${name} `)), message)
 }

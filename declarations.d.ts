@@ -1,1 +1,1 @@
-declare module "react-simple-flex-grid"
+declare module 'react-simple-flex-grid'

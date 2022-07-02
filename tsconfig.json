@@ -1,27 +1,27 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "module": "commonjs",
-        "target": "es2016",
-        "lib": ["DOM", "ESNext", "DOM.Iterable"],
-        "strict": true,
-        "esModuleInterop": true,
-        "incremental": false,
-        "skipLibCheck": true,
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "noUnusedLocals": true,
-        "strictNullChecks": true,
-        "forceConsistentCasingInFileNames": true,
-        "types": ["vite/client", "chrome"],
-        "paths": {
-            "~/*": ["views/*"]
-        },
-        "noEmit": true,
-        "jsx": "preserve",
-        "jsxFactory": "h",
-        "jsxFragmentFactory": "Fragment",
-        "jsxImportSource": "preact"
-    },
-    "exclude": ["dist", "node_modules"]
+ "compilerOptions": {
+  "baseUrl": ".",
+  "module": "commonjs",
+  "target": "es2016",
+  "lib": ["DOM", "ESNext", "DOM.Iterable"],
+  "strict": true,
+  "esModuleInterop": true,
+  "incremental": false,
+  "skipLibCheck": true,
+  "moduleResolution": "node",
+  "resolveJsonModule": true,
+  "noUnusedLocals": true,
+  "strictNullChecks": true,
+  "forceConsistentCasingInFileNames": true,
+  "types": ["vite/client", "chrome"],
+  "paths": {
+   "~/*": ["views/*"]
+  },
+  "noEmit": true,
+  "jsx": "preserve",
+  "jsxFactory": "h",
+  "jsxFragmentFactory": "Fragment",
+  "jsxImportSource": "preact"
+ },
+ "exclude": ["dist", "node_modules"]
 }
