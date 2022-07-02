@@ -10,6 +10,8 @@ import { r, port, isDev, log, isFirefoxInArg } from "./utils";
 async function stubIndexHtml() {
   const views = ["options", "popup"];
 
+  console.log("here");
+
   for (const view of views) {
     await fs.ensureDir(r(`extension/dist/${view}`));
     let data = await fs.readFile(r(`views/${view}/index.html`), "utf-8");

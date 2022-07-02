@@ -7,6 +7,7 @@ import { getUniqueKey } from "../helper";
 import { ISuperKey } from "../../types";
 import { FunctionComponent } from "preact";
 import Hints from "../hints";
+import Footer from "../../layout/footer";
 
 export const OptionsForm: FunctionComponent = () => {
   const [checkedOption, setCheckedOption] = useState<string>("");
@@ -89,64 +90,68 @@ export const OptionsForm: FunctionComponent = () => {
   };
 
   return (
-    <FormLayout
-      title={
-        <label className="mr-2">
-          <input
-            type="checkbox"
-            className={`checkbox checkbox-accent m-[-4px]`}
-            onChange={selectAllKeys}
-            checked={isAllKeySelected}
-          />
-          <span className="text-2xl text-green-300 ml-2 italic">
-            Key List ({keyLists.length})
-          </span>
-        </label>
-      }
-      actionItems={
-        <>
-          {!!selectedIds.length && (
-            <>
-              <button
-                onClick={deleteKeys}
-                className="btn btn-error btn-outline mr-2"
-              >
-                Delete
-              </button>
-              <button onClick={exportKeys} className="btn btn-outline mr-2">
-                Export
-              </button>
-            </>
-          )}
-          <a href="#add-key-modal" className="btn btn-success btn-outline">
-            Add Key
-          </a>
-        </>
-      }
-    >
-      {keyLists?.length ? (
-        keyLists.map((keyItem) => (
-          <FormItem
-            {...{
-              ...keyItem,
-              checkedOption,
-              setCheckedOption,
-              setKeyLists,
-              keyLists,
-              setSelectedIds,
-              selectedIds,
-            }}
-          />
-        ))
-      ) : (
-        <span className="text-md text-center">No Keys Available</span>
-      )}
-      <AddKeyModal
-        keyLists={keyLists}
-        checkIfExists={checkIfExists}
-        setKeyLists={setKeyLists}
-      />
-      <Hints/>
-    </FormLayout>
+    <>
+      <FormLayout
+        className="mb-20"
+        title={
+          <label className="mr-2">
+            <input
+              type="checkbox"
+              className={`checkbox checkbox-accent m-[-4px]`}
+              onChange={selectAllKeys}
+              checked={isAllKeySelected}
+            />
+            <span className="text-2xl text-green-300 ml-2 italic">
+              Key List ({keyLists.length})
+            </span>
+          </label>
+        }
+        actionItems={
+          <>
+            {!!selectedIds.length && (
+              <>
+                <button
+                  onClick={deleteKeys}
+                  className="btn btn-error btn-outline mr-2"
+                >
+                  Delete
+                </button>
+                <button onClick={exportKeys} className="btn btn-outline mr-2">
+                  Export
+                </button>
+              </>
+            )}
+            <a href="#add-key-modal" className="btn btn-success btn-outline">
+              Add Key
+            </a>
+          </>
+        }
+      >
+        {keyLists?.length ? (
+          keyLists.map((keyItem) => (
+            <FormItem
+              {...{
+                ...keyItem,
+                checkedOption,
+                setCheckedOption,
+                setKeyLists,
+                keyLists,
+                setSelectedIds,
+                selectedIds,
+              }}
+            />
+          ))
+        ) : (
+          <span className="text-md text-center">No Keys Available</span>
+        )}
+        <AddKeyModal
+          keyLists={keyLists}
+          checkIfExists={checkIfExists}
+          setKeyLists={setKeyLists}
+        />
+        <Hints />
+      </FormLayout>
+      <Footer />
+    </>
   );
 };

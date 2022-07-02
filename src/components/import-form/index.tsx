@@ -5,6 +5,7 @@ import { useImport } from "./use-import";
 import { Icon } from "@iconify/react/dist/iconify";
 import { ISuperKeyOptional } from "../../types";
 import { FunctionComponent } from "preact";
+import Footer from "../../layout/footer";
 
 const fileTypes = ["JSON"];
 
@@ -83,57 +84,63 @@ const Index: FunctionComponent = () => {
   );
 
   return (
-    <FormLayout
-      title="Import Super Keys"
-      actionItems={
-        !!dataToImport?.length && (
-          <button className="btn btn-outline btn-success" onClick={startImport}>
-            Start Import
-          </button>
-        )
-      }
-    >
-      <div className="m-auto file-uploader-container">
-        <p className="text-center my-1 text-lg">
-          Drop or click to {file ? "Change" : "Upload"} .json file
-        </p>
-        <FileUploader
-          handleChange={handleChange}
-          name="file"
-          types={fileTypes}
-        />
-      </div>
-      {!!duplicatedData?.length && (
-        <div class="alert alert-warning shadow-lg">
-          <div className="m-auto">
-            <Icon icon="akar-icons:triangle-alert" className="mr-1" />
-            <span className="text-center">
+    <>
+      <FormLayout
+        title="Import Super Keys"
+        actionItems={
+          !!dataToImport?.length && (
+            <button
+              className="btn btn-outline btn-success"
+              onClick={startImport}
+            >
+              Start Import
+            </button>
+          )
+        }
+      >
+        <div className="m-auto file-uploader-container">
+          <p className="text-center my-1 text-lg">
+            Drop or click to {file ? "Change" : "Upload"} .json file
+          </p>
+          <FileUploader
+            handleChange={handleChange}
+            name="file"
+            types={fileTypes}
+          />
+        </div>
+        {!!duplicatedData?.length && (
+          <div class="alert alert-warning shadow-lg">
+            <div className="m-auto">
+              <Icon icon="akar-icons:triangle-alert" className="mr-1" />
+              <span className="text-center">
+                <p>
+                  These keys exists already! Keys need to be unique. You can
+                  change theme here or directly on the .json file
+                </p>
+                <p className="text-gray-800">
+                  OR click `Start Import` leaving them unchanged to update.
+                </p>
+              </span>
+            </div>
+          </div>
+        )}
+
+        <div className="m-auto">{duplicatedList}</div>
+
+        {!!dataToImport?.length && !newKeysCount && (
+          <div class="alert shadow-lg mt-3">
+            <div className="m-auto">
+              <Icon icon="dashicons:database-import" className="mr-1" />
               <p>
-                These keys exists already! Keys need to be unique. You can
-                change theme here or directly on the .json file
+                Click 'Start Import' button to import {dataToImport.length}{" "}
+                {dataToImport.length > 1 ? "keys" : "key"}{" "}
               </p>
-              <p className="text-gray-800">
-                OR click `Start Import` leaving them unchanged to update.
-              </p>
-            </span>
+            </div>
           </div>
-        </div>
-      )}
-
-      <div className="m-auto">{duplicatedList}</div>
-
-      {!!dataToImport?.length && !newKeysCount && (
-        <div class="alert shadow-lg mt-3">
-          <div className="m-auto">
-            <Icon icon="dashicons:database-import" className="mr-1" />
-            <p>
-              Click 'Start Import' button to import {dataToImport.length}{" "}
-              {dataToImport.length > 1 ? "keys" : "key"}{" "}
-            </p>
-          </div>
-        </div>
-      )}
-    </FormLayout>
+        )}
+      </FormLayout>
+      <Footer />
+    </>
   );
 };
 
