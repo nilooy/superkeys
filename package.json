@@ -36,7 +36,7 @@
   "release:beta": "release-it minor --preRelease=beta",
   "prod": "run-s prod:chrome prod:firefox",
   "lint": "eslint . --color",
-  "lint-staged": "lint-staged --config lint-staged.js --allow-empty",
+  "lint-staged": "lint-staged --allow-empty --config lint-staged.js",
   "prettier": "prettier . -w"
  },
  "devDependencies": {
