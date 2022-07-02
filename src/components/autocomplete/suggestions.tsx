@@ -112,9 +112,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
             className="ml-2 badge badge-accent badge-outline text-xs cursor-pointer hover:bg-accent hover:text-gray-100 hover:border-none"
             onClick={() =>
               window.open(
-                browser.runtime.getURL(
-                  "features/options/index.html#add-key-modal"
-                )
+                browser.runtime.getURL('dist/options/index.html#add-key-modal')
               )
             }
           >

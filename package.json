@@ -17,7 +17,7 @@
     "firefox:web": "vite build --watch",
     "firefox:preview": "vite preview",
     "firefox:build": "tsup src/background src/content --format iife --out-dir extension/dist --no-splitting",
-    "firefox:open": "npm run wait && web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./extension/ --no-reload --browser-console",
+    "firefox:open": "npm run wait && web-ext run --start-url \"about:debugging#/runtime/this-firefox\"  --source-dir ./extension/ --browser-console",
     "build:chrome": "run-s clear build:web build:prepare build:js",
     "build:firefox": "run-s clear build:web 'build:prepare -- --firefox' build:js",
     "build:prepare": "esno scripts/prepare.ts build",

@@ -21,7 +21,7 @@ export async function getManifest(isFirefoxInArg: boolean = false) {
   const shortCut = {
     [`_execute${isFirefoxInArg ? "_browser" : ""}_action`]: {
       suggested_key: {
-        windows: "Alt+Space",
+        windows: "Ctrl+Space",
         mac: "Alt+Space",
       },
     },

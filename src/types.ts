@@ -34,3 +34,17 @@ export interface ISearchHandler {
   keyItem: ISuperKeyOptional | null;
   value?: string;
 }
+
+export interface StorageChange {
+  /**
+   * The old value of the item, if there was an old value.
+   * Optional.
+   */
+  oldValue?: any;
+
+  /**
+   * The new value of the item, if there is a new value.
+   * Optional.
+   */
+  newValue?: any;
+}
