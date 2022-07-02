@@ -37,7 +37,7 @@ export const Autocomplete: FunctionComponent = () => {
           name="search"
           placeholder={`Search `}
         />
-        <p className="absolute right-2 top-3 text-gray-500">
+        <p className="absolute right-2 top-2 text-gray-500">
           <Shortcuts command={mainCommand} />
         </p>
       </div>
