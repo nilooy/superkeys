@@ -8,21 +8,17 @@ const Hints: FunctionComponent = () => {
 
   return (
     <div>
-      <input type="checkbox" id="hint_modal" className="modal-toggle" />
-      <label
-        for="hint_modal"
+      <div
+        id="hint_modal"
         className="modal cursor-pointer"
         style={{
           "--tw-bg-opacity": "0.8",
         }}
       >
         <div className="modal-box relative">
-          <label
-            htmlFor="hint_modal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
+          <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
-          </label>
+          </a>
           <h3 className="font-bold text-xl flex items-center">
             <Icon icon="akar-icons:triangle-alert" className="mr-2" /> Hints
           </h3>
@@ -43,7 +39,7 @@ const Hints: FunctionComponent = () => {
             </li>
           </ul>
         </div>
-      </label>
+      </div>
     </div>
   );
 };
