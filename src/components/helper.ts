@@ -1,1 +1,1 @@
-export const getUniqueKey = (key, id) => key + "-" + id;
+export const getUniqueKey = (key, id) => key + '-' + id

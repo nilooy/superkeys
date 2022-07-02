@@ -1,1 +1,1 @@
-export { Row, Col } from "react-simple-flex-grid";
+export { Row, Col } from 'react-simple-flex-grid'

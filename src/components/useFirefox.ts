@@ -1,12 +1,12 @@
-import { useEffect, useState } from "preact/compat";
-import { checkFirefoxBrowser } from "../utils";
+import { useEffect, useState } from 'preact/compat'
+import { checkFirefoxBrowser } from '../utils'
 
 export const useFirefox = () => {
-  const [isFirefox, setIsFirefox] = useState<boolean | string>("unknown");
+ const [isFirefox, setIsFirefox] = useState<boolean | string>('unknown')
 
-  useEffect(() => {
-    checkFirefoxBrowser().then((isIt: boolean) => setIsFirefox(isIt));
-  }, []);
+ useEffect(() => {
+  checkFirefoxBrowser().then((isIt: boolean) => setIsFirefox(isIt))
+ }, [])
 
-  return { isFirefox };
-};
+ return { isFirefox }
+}
