@@ -2,9 +2,16 @@ import { Icon } from "@iconify/react";
 import { FunctionComponent } from "preact";
 import { useCommand } from "./useCommand";
 import { Shortcuts } from "./shortcuts";
+import Review from "./review";
+import Social from "./social";
+import { useFirefox } from "./useFirefox";
+import { CHROME_SHORTCUT_GUIDE, FIREFOX_SHORTCUT_GUIDE } from "../constants";
 
 const Hints: FunctionComponent = () => {
   const { mainCommand } = useCommand();
+  const { isFirefox } = useFirefox();
+
+  const guideUrl = isFirefox ? FIREFOX_SHORTCUT_GUIDE : CHROME_SHORTCUT_GUIDE;
 
   return (
     <div>
@@ -24,10 +31,22 @@ const Hints: FunctionComponent = () => {
           </h3>
           <div className="divider"></div>
           <ul>
-            <li class="flex justify-between items-center my-2">
+            <li class="flex justify-between items-center">
               <p className="text-lg">Shortcut to open search popup:</p>{" "}
               <Shortcuts command={mainCommand} />{" "}
             </li>{" "}
+            <li>
+              <a
+                target="_blank"
+                href={guideUrl}
+                rel="noreferrer"
+                className="link link-accent"
+              >
+                <em className="text-[12px]">
+                  Follow this guide to change browser shortcuts
+                </em>
+              </a>
+            </li>
             <div className="divider"></div>
             <li class="flex justify-between items-center my-2">
               <p>Search History </p> Type{" "}
@@ -38,6 +57,10 @@ const Hints: FunctionComponent = () => {
               <kbd className="kbd kbd-md ml-2">@</kbd>
             </li>
           </ul>
+          <div className="divider"></div>
+          <Review />
+          <br></br>
+          <Social />
         </div>
       </div>
     </div>
