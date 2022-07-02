@@ -6,6 +6,7 @@ import browser from "webextension-polyfill";
 import { getUniqueKey } from "../helper";
 import { ISuperKey } from "../../types";
 import { FunctionComponent } from "preact";
+import Hints from "../hints";
 
 export const OptionsForm: FunctionComponent = () => {
   const [checkedOption, setCheckedOption] = useState<string>("");
@@ -145,6 +146,7 @@ export const OptionsForm: FunctionComponent = () => {
         checkIfExists={checkIfExists}
         setKeyLists={setKeyLists}
       />
+      <Hints/>
     </FormLayout>
   );
 };
