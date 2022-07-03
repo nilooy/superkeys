@@ -4,6 +4,7 @@ import browser from 'webextension-polyfill'
 import { ISuperKeyOptional } from '../../types'
 import { ISuggestionsProps } from './suggestions'
 import { isSearchingBookmarks, isSearchingHistory } from './helpers'
+import Fuse from 'fuse.js'
 
 export const useAutocomplete = () => {
  const ref = useRef<HTMLInputElement>(null)
@@ -97,14 +98,12 @@ export const useAutocomplete = () => {
       }
      })
    } else
-    newFilteredSuggestions = suggestions
-     ?.filter(
-      (suggestion: ISuperKeyOptional) =>
-       suggestion.key &&
-       suggestion.key.toLowerCase().indexOf(userInput.toLowerCase()) > -1,
-     )
-     .map((each: ISuperKeyOptional) => ({
-      ...each,
+    newFilteredSuggestions = new Fuse(suggestions, {
+     keys: ['key', 'url'],
+    })
+     .search(userInput)
+     .map((each: Fuse.FuseResult<ISuperKeyOptional>) => ({
+      ...each.item,
       type: 'key',
      }))
 
