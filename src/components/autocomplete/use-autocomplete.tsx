@@ -168,7 +168,16 @@ export const useAutocomplete = () => {
   const keyCode: string = e.code
   const { value } = e.target as HTMLInputElement
 
-  keyBoardEvents[keyCode]?.(value)
+  const keyBoardEvent = keyBoardEvents[keyCode]
+
+  if (keyBoardEvent) {
+   e?.preventDefault()
+   keyBoardEvent?.(value)
+  }
+ }
+
+ const onMouseover = (index: number) => {
+  setActiveSuggestion(index)
  }
 
  return {
@@ -180,5 +189,6 @@ export const useAutocomplete = () => {
   onKeyDown,
   onSuggestionClick,
   value,
+  onMouseover,
  }
 }

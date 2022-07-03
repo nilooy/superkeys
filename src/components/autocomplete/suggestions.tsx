@@ -2,13 +2,17 @@ import { DEFAULT_VALUES } from './search-handler'
 import browser from 'webextension-polyfill'
 import { FunctionComponent } from 'preact'
 import { ISuperKeyOptional } from '../../types'
-import { listItemType, searchHelperText } from './suggestions-item'
+import {
+ listItemType,
+ searchHelperQueryString,
+ searchHelperText,
+} from './suggestions-item'
 import { getSearchType } from './helpers'
 
 const style = {
  activeItem: 'bg-gray-800 text-white',
  item: `px-4 py-3 focus text-sm text-gray-200 cursor-pointer hover:bg-gray-600`,
- list: `shadow-xl top-full left-0 right-0 border w-auto md:max-w-full overflow-y-auto max-h-80 mt-2 p-3 z-20`,
+ list: `shadow-xl top-full left-0 right-0 border w-auto md:max-w-full overflow-y-auto max-h-80 p-3 z-20`,
 }
 
 export interface ISuggestionsProps {
@@ -18,7 +22,7 @@ export interface ISuggestionsProps {
  showSuggestions: boolean
  value: string
  onSuggestionClick: (keyItem: object | string) => void
- onKeyDown: any
+ onMouseover?: any
 }
 
 const Suggestions: FunctionComponent<ISuggestionsProps> = ({
@@ -28,7 +32,7 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
  showSuggestions,
  value,
  onSuggestionClick,
- onKeyDown,
+ onMouseover,
 }) => {
  if (!showSuggestions || !value) return null
 
@@ -36,70 +40,75 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
  const keyToFind = suggestions.find(item => item?.key === keyFromValue)
  const searchValue = keyToFind
   ? value.replace(`${keyToFind.key}${DEFAULT_VALUES.separator}`, '')
-  : ''
+  : value
 
  // No sub query found and matched with key with space, can trigger search query
- const showSearchMessageUrl: any =
-  !filteredSuggestions.length && keyToFind?.queryUrl && keyToFind?.url
+ const showSearchMessageUrl: '' | undefined | string =
+  keyToFind?.queryUrl && keyToFind?.url
 
  const searchType = getSearchType(value)
 
- const helperText = searchHelperText[searchType]?.(showSearchMessageUrl, value)
+ const helperText =
+  searchType !== 'key' && searchHelperText[searchType]?.(value)
+
+ const helperTextQueryString = searchHelperQueryString(
+  showSearchMessageUrl,
+  searchValue,
+ )
 
  return (
   <div>
-   {showSearchMessageUrl ? (
-    <div className="text-sm text-gray-500 p-4">
-     <span className="p-2 pt-10 text-gray-500 ">
-      <span className="text-gray-300">
-       {searchValue.substring(0, 35)}
-       {searchValue?.length > 35 ? '...' : ''}
-      </span>{' '}
-      Search on {showSearchMessageUrl}
-     </span>
+   {!!helperText && (
+    <div
+     className={`pointer-events-none p-1 bg-gray-800`}
+     onClick={() => onSuggestionClick(value)}
+    >
+     {helperText}
     </div>
-   ) : (
-    ''
    )}
-   {filteredSuggestions.length ? (
-    <ul className={style.list}>
-     {!!helperText && (
-      <li
-       className={
-        activeSuggestion === 0
-         ? `${style.item} ${style.activeItem}`
-         : style.item
-       }
-       onClick={() => onSuggestionClick(value)}
-      >
-       {helperText}
-      </li>
-     )}
-     {filteredSuggestions.map((suggestion, i) => {
-      let className
-      const index = i + 1
-
-      if (index === activeSuggestion) {
-       className = `${style.item} ${style.activeItem}`
-      }
-
-      if (index !== activeSuggestion) {
-       className = style.item
-      }
-
-      const ItemByType = listItemType[suggestion.type || 'key'] || <></>
-
-      return (
+   {filteredSuggestions.length || !!showSearchMessageUrl ? (
+    <>
+     <ul className={style.list}>
+      {!!helperTextQueryString && (
        <li
-        className={className}
-        key={suggestion.key}
-        onClick={() => onSuggestionClick(suggestion)}
+        className={
+         activeSuggestion === 0
+          ? `${style.item} ${style.activeItem}`
+          : style.item
+        }
+        onMouseOver={() => onMouseover(0)}
+        onClick={() => onSuggestionClick(value)}
        >
-        <ItemByType suggestion={suggestion} />
+        {helperTextQueryString}
        </li>
-      )
-     })}
-    </ul>
+      )}
+      {filteredSuggestions.map((suggestion, i) => {
+       let className
+       const index = i + 1
+
+       if (index === activeSuggestion) {
+        className = `${style.item} ${style.activeItem}`
+       }
+
+       if (index !== activeSuggestion) {
+        className = style.item
+       }
+
+       const ItemByType = listItemType[suggestion.type || 'key'] || <></>
+
+       return (
+        <li
+         className={className}
+         key={suggestion.key}
+         onClick={() => onSuggestionClick(suggestion)}
+         onMouseOver={() => onMouseover(index)}
+        >
+         <ItemByType suggestion={suggestion} />
+        </li>
+       )
+      })}
+     </ul>
+    </>
    ) : (
     <div className="text-sm text-gray-500 p-4">
      <em>No {searchType === 'key' ? 'suggestion' : searchType} available! </em>

@@ -7,7 +7,7 @@ import { Shortcuts } from '../shortcuts'
 const style: { default: string; disabled: string; label: string } = {
  label: `text-gray-700`,
  disabled: `cursor-not-allowed`,
- default: `input input-bordered w-[600px] shadow-lg`,
+ default: `input input-bordered min-w-[600px] w-full shadow-lg`,
 }
 
 export const Autocomplete: FunctionComponent = () => {
@@ -20,6 +20,7 @@ export const Autocomplete: FunctionComponent = () => {
   onKeyDown,
   value,
   onSuggestionClick,
+  onMouseover,
  } = useAutocomplete()
 
  const { mainCommand } = useCommand()
@@ -37,9 +38,11 @@ export const Autocomplete: FunctionComponent = () => {
      name="search"
      placeholder={`Search `}
     />
-    <p className="absolute right-2 top-2 text-gray-500">
-     <Shortcuts command={mainCommand} />
-    </p>
+    {mainCommand && !value && (
+     <p className="absolute right-2 top-2 text-gray-500">
+      <Shortcuts size="sm" command={mainCommand} />
+     </p>
+    )}
    </div>
    <Suggestions
     {...{
@@ -49,7 +52,7 @@ export const Autocomplete: FunctionComponent = () => {
      value,
      onSuggestionClick,
      suggestions,
-     onKeyDown,
+     onMouseover,
     }}
    />
   </div>
