@@ -37,9 +37,11 @@ export const Autocomplete: FunctionComponent = () => {
      name="search"
      placeholder={`Search `}
     />
-    <p className="absolute right-2 top-2 text-gray-500">
-     <Shortcuts command={mainCommand} />
-    </p>
+    {mainCommand && !value && (
+     <p className="absolute right-2 top-2 text-gray-500">
+      <Shortcuts size="sm" command={mainCommand} />
+     </p>
+    )}
    </div>
    <Suggestions
     {...{

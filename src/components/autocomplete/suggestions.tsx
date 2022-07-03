@@ -28,7 +28,6 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
  showSuggestions,
  value,
  onSuggestionClick,
- onKeyDown,
 }) => {
  if (!showSuggestions || !value) return null
 
@@ -36,45 +35,32 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
  const keyToFind = suggestions.find(item => item?.key === keyFromValue)
  const searchValue = keyToFind
   ? value.replace(`${keyToFind.key}${DEFAULT_VALUES.separator}`, '')
-  : ''
+  : value
 
  // No sub query found and matched with key with space, can trigger search query
- const showSearchMessageUrl: any =
-  !filteredSuggestions.length && keyToFind?.queryUrl && keyToFind?.url
+ const showSearchMessageUrl: any = keyToFind?.queryUrl && keyToFind?.url
 
  const searchType = getSearchType(value)
 
- const helperText = searchHelperText[searchType]?.(showSearchMessageUrl, value)
+ const helperText = searchHelperText[searchType]?.(
+  showSearchMessageUrl,
+  searchValue,
+ )
 
  return (
   <div>
-   {showSearchMessageUrl ? (
-    <div className="text-sm text-gray-500 p-4">
-     <span className="p-2 pt-10 text-gray-500 ">
-      <span className="text-gray-300">
-       {searchValue.substring(0, 35)}
-       {searchValue?.length > 35 ? '...' : ''}
-      </span>{' '}
-      Search on {showSearchMessageUrl}
-     </span>
-    </div>
-   ) : (
-    ''
+   {!!helperText && (
+    <li
+     className={
+      activeSuggestion === 0 ? `${style.item} ${style.activeItem}` : style.item
+     }
+     onClick={() => onSuggestionClick(value)}
+    >
+     {helperText}
+    </li>
    )}
    {filteredSuggestions.length ? (
     <ul className={style.list}>
-     {!!helperText && (
-      <li
-       className={
-        activeSuggestion === 0
-         ? `${style.item} ${style.activeItem}`
-         : style.item
-       }
-       onClick={() => onSuggestionClick(value)}
-      >
-       {helperText}
-      </li>
-     )}
      {filteredSuggestions.map((suggestion, i) => {
       let className
       const index = i + 1
@@ -86,6 +72,8 @@ const Suggestions: FunctionComponent<ISuggestionsProps> = ({
       if (index !== activeSuggestion) {
        className = style.item
       }
+
+      console.log({ ss: suggestion.type })
 
       const ItemByType = listItemType[suggestion.type || 'key'] || <></>
 

@@ -4,6 +4,7 @@ import browser from 'webextension-polyfill'
 import { ISuperKeyOptional } from '../../types'
 import { ISuggestionsProps } from './suggestions'
 import { isSearchingBookmarks, isSearchingHistory } from './helpers'
+import Fuse from 'fuse.js'
 
 export const useAutocomplete = () => {
  const ref = useRef<HTMLInputElement>(null)
@@ -97,14 +98,12 @@ export const useAutocomplete = () => {
       }
      })
    } else
-    newFilteredSuggestions = suggestions
-     ?.filter(
-      (suggestion: ISuperKeyOptional) =>
-       suggestion.key &&
-       suggestion.key.toLowerCase().indexOf(userInput.toLowerCase()) > -1,
-     )
-     .map((each: ISuperKeyOptional) => ({
-      ...each,
+    newFilteredSuggestions = new Fuse(suggestions, {
+     keys: ['key', 'url'],
+    })
+     .search(userInput)
+     .map((each: Fuse.FuseResult<ISuperKeyOptional>) => ({
+      ...each.item,
       type: 'key',
      }))
 
@@ -149,7 +148,7 @@ export const useAutocomplete = () => {
  // (e.target as HTMLInputElement).value
 
  const keyBoardEvents: any = {
-  Enter: (value: string): any =>
+  Enter: (value: string): Promise<void> =>
    activeSuggestion
     ? // activeSuggestion == 0 should be the input value
       fireSubmitAction({
@@ -169,7 +168,12 @@ export const useAutocomplete = () => {
   const keyCode: string = e.code
   const { value } = e.target as HTMLInputElement
 
-  keyBoardEvents[keyCode]?.(value)
+  const keyBoardEvent = keyBoardEvents[keyCode]
+
+  if (keyBoardEvent) {
+   e?.preventDefault()
+   keyBoardEvent?.(value)
+  }
  }
 
  return {
