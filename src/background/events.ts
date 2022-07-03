@@ -13,7 +13,6 @@ export const handleStorageChange = async (changes: {
   changedArray.forEach(({ oldValue, newValue }: StorageChange) => {
    // ADD KEY
    if (!oldValue && newValue) {
-    console.log({ create: true, oldValue, newValue })
     browser.contextMenus.create({
      title: `Search on ${newValue.url}`,
      contexts: ['selection'],
@@ -22,12 +21,10 @@ export const handleStorageChange = async (changes: {
    }
    // REMOVE KEY
    else if (oldValue && !newValue) {
-    console.log({ REMOVE: true, oldValue, newValue })
     browser.contextMenus.remove(oldValue.id)
    }
    // EDIT KEY
    else if (oldValue && newValue) {
-    console.log({ EDIT: true, oldValue, newValue })
     browser.contextMenus.update(oldValue.id, {
      title: `Search on ${newValue.url}`,
      contexts: ['selection'],

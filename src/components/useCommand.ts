@@ -6,7 +6,6 @@ export const useCommand = () => {
 
  useEffect(() => {
   browser.commands.getAll().then((cmds: any[]) => {
-   console.log({ cmds })
    if (cmds.length) {
     const mainCmd = cmds.find(
      cmd =>

@@ -6,7 +6,6 @@ import Review from './review'
 import Social from './social'
 import { useFirefox } from './useFirefox'
 import { CHROME_SHORTCUT_GUIDE, FIREFOX_SHORTCUT_GUIDE } from '../constants'
-import { useEffect } from 'preact/compat'
 import browser from 'webextension-polyfill'
 
 const Hints: FunctionComponent = () => {
@@ -14,10 +13,6 @@ const Hints: FunctionComponent = () => {
  const { isFirefox } = useFirefox()
 
  const guideUrl = isFirefox ? FIREFOX_SHORTCUT_GUIDE : CHROME_SHORTCUT_GUIDE
-
- useEffect(() => {
-  console.log({ sss: browser.runtime.id })
- }, [])
 
  return (
   <div>
