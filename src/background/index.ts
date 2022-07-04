@@ -34,7 +34,7 @@ async function handleSearch(info: any, tab: any) {
 
  await handleDefaultMenuClick(indexKey)
 
- if (!info.index) return
+ if (!indexKey) return
 
  browser.storage.sync.get(indexKey).then(item => {
   const keyItem = item[indexKey]

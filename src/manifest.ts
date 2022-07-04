@@ -76,12 +76,10 @@ export async function getManifest(isFirefoxInArg = false) {
   ],
   icons,
   permissions: [
-   'tabs',
    'storage',
    'search',
    'contextMenus',
    'notifications',
-   'activeTab',
    'bookmarks',
    'history',
   ],
