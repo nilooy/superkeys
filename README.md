@@ -4,7 +4,7 @@
     </br>
     <img src="https://www.superkeys.app/superkeys-text.png" alt="super key text logo"/>
     
- <h4 color="yellow">Superkeys allow users to add short keys for websites and make search query in those sites.</h4>
+ <h4 color="yellow">Superkeys is a browser extension which allow users to add short keys for websites and make search query in those sites.</h4>
  <p>Made with ❤️</p>
     
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/superkeys_app.svg?style=social&label=Follow%20%40superkeys_app)](https://twitter.com/superkeys_app)
