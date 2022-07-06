@@ -92,6 +92,15 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 
 # 🔧 Tools Used
 
+- 🎨 [Preact](https://preactjs.com/)
+- 🎨 [Tailwind.css](https://tailwindcss.com/)
+- 🎨 [Daisy.ui](https://daisyui.com/)
+- 🔨 Typescript
+- 🧪 [Webext-polyfill](https://github.com/mozilla/webextension-polyfill)
+- 👔 [Web-ext](https://www.npmjs.com/package/web-ext)
+- 🏗️ [Vite.js](https://vitejs.dev)
+- 🚀 [Release-it](https://github.com/release-it/release-it)
+
 
 
 
