@@ -31,6 +31,12 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 > So the normal process would be open a new tab, go to stackoverflow and search with the keyword he is looking for.
 > With superkeys he pressed `Alt` + `Space` on keyboard and type `so how to center a div` and 💥
 
+***
+
+### 🌱 The extension will not collect or use your data, all your data will be saved and synced in your browser.
+
+***
+
 # ⚗️ Features
 
 - 🔐 KEYS
@@ -93,6 +99,8 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 # 🔧 Tools Used
 
 - 🎨 [Preact](https://preactjs.com/)
+
+
 - 🎨 [Tailwind.css](https://tailwindcss.com/)
 - 🎨 [Daisy.ui](https://daisyui.com/)
 - 🔨 Typescript
