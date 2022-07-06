@@ -109,6 +109,69 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 - 🏗️ [Vite.js](https://vitejs.dev)
 - 🚀 [Release-it](https://github.com/release-it/release-it)
 
+# 🚸 Development Guide
+
+1. Install Dependencies
+```sh
+yarn
+```
+2. Start Dev Server
+Default is firefox
+```sh
+yarn start
+```
+
+For Firefox
+```sh
+yarn dev:firefox
+```
+OR for chrome
+```sh
+yarn dev:chrome
+```
+
+> Any of these commands will open a instance of that browser with superkeys extension installed. 
+
+3. Build all for prod 
+```sh
+yarn prod
+```
+> This will generate folder with version number inside release directory and will contain both firefox and chrome 's zip files.
+
+### Important Notes
+* src/manifest.ts > will generate manifest v2 for firefox and v3 for chrome, add your necessary configs there in manifest.ts file.
+* Used `browser` from 'webextension-polyfill' instead of global `chrome` to get cross browser apis.
+
+```js
+import browser from 'webextension-polyfill'
+```
+* Pre-commit hooks can be enabled by running `node_modules/husky`
+
+# 👥 Contribution
+* 🐛 Bugs: Open issues if you find bugs or discussion
+* 🧑‍💻 Development: Simply Fork and PR
+
+***
+
+# 📈 Roadmaps
+1. Omnibox
+2. Automation (Simple user defined content-scripts)
+3. Show TopSites by Default
+4. Open Apps with `management` api
+5. Fetch results from available api for keys with search query turned on.
+
+> Feel free to add more
+
+
+> #### Appriciate for spending time read it. Hope to get a ⭐ on this repo and add me for more exciting projects [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/nil_ooy.svg?style=social&label=Follow%20%40superkeys_app)](https://twitter.com/nil_ooy)
+
+
+
+
+
+
+
+
 
 
 
