@@ -163,7 +163,19 @@ import browser from 'webextension-polyfill'
 > Feel free to add more
 
 
-> #### Appriciate for spending time read it. Hope to get a ⭐ on this repo and add me for more exciting projects [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/nil_ooy.svg?style=social&label=Follow%20%40superkeys_app)](https://twitter.com/nil_ooy)
+
+***
+> #### Appriciate for spending time read it. ❤
+Hope to get a ⭐ on this repo and add me for more exciting projects [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/nil_ooy.svg?style=social&label=%20%40nil_ooy)](https://twitter.com/nil_ooy)
+
+ #### Share with other
+ [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/superkeys_app.svg?style=social&label=Share%20%40superkeys_app)](https://twitter.com/intent/tweet?text=Get+a+productivity+boost+%F0%9F%92%BB%E2%9C%A8%F0%9F%A7%AA%2C+give+this+extension+a+try+www.superkeys.app%0A%0AFollow+%40superkeys_app%0A&hashtags=productivity%2Cchrome%2Cfirefox%2Csuperkeys&ref_src=superkeys-option-page)
+
+
+
+
+
+
 
 
 
