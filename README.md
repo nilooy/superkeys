@@ -56,13 +56,38 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 - ⬆️ Import Keys
 
 > Keys can be imported by .json file with correct data structure.
-> 
+> Go to `Import` from top bar, drop or click to upload to json file
 
 - ⬇️ Export Keys
 
 > Keys are selectable. You can also select all. After selection you can export the selected ones.
 > Usage: select the keys you want to export, it will show `Export` on top bar, click it
 
+# 🛂 Data Structure (All data types are :string)
+
+```json
+{
+   "keyLists":[
+      {
+         "key":"gh",
+         "separator":"",
+         "url":"https://github.com",
+         "queryUrl":"https://github.com/search?q",
+         "querySeparator":"",
+         "subKeys":[
+            {
+               "key":"pr",
+               "url":"https://github.com/pulls"
+            },
+            {
+               "key":"pr-need-review",
+               "url":"https://github.com/pulls/review-requested"
+            }
+         ]
+      }
+   ]
+}
+```
 
 
 # 🔧 Tools Used
