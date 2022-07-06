@@ -31,7 +31,22 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 > So the normal process would be open a new tab, go to stackoverflow and search with the keyword he is looking for.
 > With superkeys he pressed `Alt` + `Space` on keyboard and type `so js convert object to array` and 💥
 
-# Features
+# ⚗️ Features
+
+- 🔐 KEYS: 
+
+- 🌐 Search Query Url
+
+- 🔀 Subkeys
+
+- 🔖 Context Menu
+
+- ⬆️ Import Keys
+
+- ⬇️ Export Keys
+
+
+
 
 
 # 🔧 Tools Used
