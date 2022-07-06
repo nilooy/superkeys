@@ -29,23 +29,39 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 
 > Example: John loves coding and he needs search on stackoverflow many times a day while coding. 
 > So the normal process would be open a new tab, go to stackoverflow and search with the keyword he is looking for.
-> With superkeys he pressed `Alt` + `Space` on keyboard and type `so js convert object to array` and 💥
+> With superkeys he pressed `Alt` + `Space` on keyboard and type `so how to center a div` and 💥
 
 # ⚗️ Features
 
-- 🔐 KEYS: 
+- 🔐 KEYS
+
+> Key are the namespace for a single website eg: key: `so`
+> Usage: type `so` and enter
 
 - 🌐 Search Query Url
 
+> Each key can contain one single seaarch query url belong to the key above `so`, eg: `https://stackoverflow.com/search?q` 
+> Usage: type `so how to center a div` and enter
+
 - 🔀 Subkeys
+
+> Each key can contain multiple Subkeys, let's add `pr` subkey with url `https://github.com/pulls` for key `gh`
+> Usage: type `gh pr` and enter
 
 - 🔖 Context Menu
 
+> Each key containing 🌐 Search Query Url will be added to browser context menu,
+> Usage: select any text on the browser and right click, from the context menu hover over to superkeys and you will see the list, select your preferred site to search on.
+
 - ⬆️ Import Keys
+
+> Keys can be imported by .json file with correct data structure.
+> 
 
 - ⬇️ Export Keys
 
-
+> Keys are selectable. You can also select all. After selection you can export the selected ones.
+> Usage: select the keys you want to export, it will show `Export` on top bar, click it
 
 
 
