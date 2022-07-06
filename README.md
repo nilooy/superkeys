@@ -20,7 +20,7 @@
 </p>
 
 
-<img src="https://www.superkeys.app/banner1.jpeg" width="600"/>
+<img src="https://www.superkeys.app/banner3.svg" alt="superkey banner" width="600"/>
 
 </div>
 
