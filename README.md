@@ -2,35 +2,18 @@
     <img src="extension/assets/img/logo128.png" alt="Meteor Devtool Evolved Gif" />
     <h2>SuperKeys</h2>
     <h4 color="yellow">Superkeys allow users to add short keys for websites and make search query in those sites.</h4>
-    <p>_THIS EXTENSION IS IN ALPHA_</p>
+    <p>Made with ❤️</p>
+    
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/superkeys_app.svg?style=social&label=Follow%20%40superkeys_app)](https://twitter.com/superkeys_app)
+
+
+<p align="center" >
+    <a href="https://chrome.google.com/webstore/detail/superkeys/pipnngenjgpmcofmeifehbaihdojajbc">
+    <img width="120" src="https://img.shields.io/badge/%20-Chrome-orange?logo=google-chrome&logoColor=white" alt="Download for Chrome" />
+    </a>
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/superkeys/">
+    <img width="110" src="https://img.shields.io/badge/%20-Firefox-red?logo=mozilla&logoColor=white" alt="Download for Firefox" />
+    </a>
+</p>
 </div>
 
-## Usage
-
-### Folders
-
-- `views` - frontend for the extension (popup, options and new-tab).
-- `src` - background scripts and content scripts.
-  - `manifest.ts` - manifest for the extension.
-- `extension` - extension package root, also holds assets.
-- `scripts` - development helper scripts.
-
-### Development
-
-```bash
-pnpm dev
-```
-
-Then **load extension in browser with the `extension/` folder**,
-
-### Build
-
-To build the extension, run
-
-```bash
-pnpm build
-```
-
-And then pack files under `extension`.
-
-sub>Support this project by ⭐️ starring and sharing it. [Follow me](https://github.com/privatenumber) to see what other cool projects I'm working on! ❤️</sub>
