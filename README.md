@@ -43,6 +43,8 @@ It's a browser extension to search + browse faster. Sometimes we need to look fo
 
 > Key are the namespace for a single website eg: key: `so`
 > Usage: type `so` and enter
+> Search History Type: `#`
+> Bookmarks Search Type: `@`
 
 - 🌐 Search Query Url
 
