@@ -22,6 +22,8 @@
 
 <img src="https://www.superkeys.app/banner3.svg" alt="superkey banner" width="600"/>
 
+### [Demo Video](https://www.youtube.com/watch?v=azbQhStu7zw&t=15s)
+
 </div>
 
 # 🧐 What is Superkeys?
